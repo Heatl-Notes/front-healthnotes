@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './Navbar.css';
 import avatar from '../../assets/avatar.jpg'
 

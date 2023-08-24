@@ -1,7 +1,28 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Sidebar.css';
 import logo from '../../assets/logo.jpg';
 
 const Sidebar = ({ sidebarOpen, closeSideBar }) => {
+  
+  const navigate = useNavigate();
+  async function handleLout(e) {
+    e.preventDefault();
+
+    try {
+      // const response = await api.post('sessions', { id });
+      
+      // localStorage.setItem('ongId', id);
+      // localStorage.setItem('ongName', response.data.name);
+
+      navigate('/');
+    }catch (err) {
+      alert('Falha no logout, tente novamente!!');
+    } 
+  }
+
+
     return (
         <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
           <div className="sidebar__title">
@@ -18,21 +39,21 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             >X</i>
           </div>
           <div className="sidebar__menu">
-            <div className="sidebar__link active_menu_link">
+            {/* <div className="sidebar__link active_menu_link">
               <i className="fa fa-minus-square"></i>
-              <a href="#">Home</a>
-            </div>
+              <a href="#">Dashboard</a>
+            </div> */}
 
             <h2>ADMIN</h2>
             <div className="sidebar__link">
               <i className="fa-solid fa-house"></i>
-              <a href="#">Área administrativa</a>
+              <a href="#">Dashboard</a>
             </div>
             <div className="sidebar__link">
               <i className="fa fa-building"></i>
-              <a href="#">Lojas</a>
+              <a href="#">Pacientes</a>
             </div>
-            <div className="sidebar__link">
+            {/* <div className="sidebar__link">
               <i className="fa fa-archive"></i>
               <a href="#">Produtos</a>
             </div>
@@ -65,10 +86,10 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             <div className="sidebar__link">
               <i className="fa fa-file-text"></i>
               <a href="#">Política de privacidade</a>
-            </div>
+            </div> */}
             <div className="sidebar__logout">
               <i className="fa fa-power-off"></i>
-              <a href="#">Log out</a>
+              <a href="/">Log out</a>
             </div>
           </div>
 

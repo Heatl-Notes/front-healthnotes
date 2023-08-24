@@ -1,5 +1,6 @@
+import React from 'react';
+
 import hello from '../../assets/hello.jpg';
-import Chart from '../charts/Chart';
 
 import './Main.css';
 
@@ -21,8 +22,8 @@ const Main = () => {
                 <div className="card">
                     <i className="fa fa-file-text fa-2x text-lightblue"></i>
                     <div className="card_inner">
-                        <p className="text-primary-p">Número de pedidos</p>
-                        <span className="font-bold-text-title">558</span>
+                        <p className="text-primary-p">Número de pacientes</p>
+                        <span className="font-bold-text-title">5</span>
                     </div>
                 </div>
 
@@ -56,15 +57,15 @@ const Main = () => {
                 <div className="charts__left">
                     <div className="charts__left__title">
                         <div>
-                            <h1>Daily Reports</h1>
+                            <h1>Lembretes</h1>
                             <p>Ubatuba, São Paulo, BR</p>
                         </div>
                         <i className="fa fa-usd"></i>
                     </div>
-                    <Chart />
+                    {/* <Chart /> */}
                 </div>
 
-                <div className="charts__right">
+                {/* <div className="charts__right">
                     <div className="charts__right__title">
                         <div>
                             <h1>Daily Reports</h1>
@@ -95,7 +96,7 @@ const Main = () => {
                             <p>R$180,00</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
           </div>
         </main>
