@@ -5,7 +5,7 @@ import Login from './pages/Logon';
 import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
 import Patients from './pages/Patients';
-import Patient from './pages/Patient';
+import PatientProfile from './pages/PatientProfile';
 import Profile from './pages/Profile';
 
 export default function Rotas() {
@@ -16,7 +16,7 @@ export default function Rotas() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patients" element={<Patients />} />
-        <Route path="/patient" element={<Patient />} />
+        <Route path="/patient/:patientId" element={<PatientProfile />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>

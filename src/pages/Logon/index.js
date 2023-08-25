@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from 'react';
+import { apiUrl } from '../../config' 
 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,15 +18,26 @@ function Logon() {
     e.preventDefault();
 
     try {
-      // const response = await api.post('sessions', { id });
-      
-      // localStorage.setItem('ongId', id);
-      // localStorage.setItem('ongName', response.data.name);
+      const response = await fetch(`${apiUrl}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
 
-      navigate('/dashboard');
-    }catch (err) {
-      alert('Falha no login, tente novamente!!');
-    } 
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.tokenJWT);
+        localStorage.setItem("userCpf", data.cpf);
+        localStorage.setItem("userName", data.name);
+        navigate('/dashboard');
+      } else {
+        throw new Error("Falha no login, tente novamente!!");
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
 

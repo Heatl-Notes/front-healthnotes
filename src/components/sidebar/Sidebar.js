@@ -36,7 +36,7 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             className="fa fa-times"
             id="sidebarIcon"
             aria-hidden="true"
-            >X</i>
+            ></i>
           </div>
           <div className="sidebar__menu">
             {/* <div className="sidebar__link active_menu_link">
@@ -46,11 +46,11 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
 
             <h2>ADMIN</h2>
             <div className="sidebar__link">
-              <i className="fa-solid fa-house"></i>
+              <i className="fas fa-tachometer-alt"></i>
               <a href="/dashboard">Dashboard</a>
             </div>
             <div className="sidebar__link">
-              <i className="fa fa-building"></i>
+              <i className="fas fa-users"></i>
               <a href="/patients">Pacientes</a>
             </div>
             {/* <div className="sidebar__link">
@@ -88,7 +88,7 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
               <a href="#">Política de privacidade</a>
             </div> */}
             <div className="sidebar__logout">
-              <i className="fa fa-power-off"></i>
+            <i className="fas fa-sign-out-alt"></i>
               <a href="/">Log out</a>
             </div>
           </div>

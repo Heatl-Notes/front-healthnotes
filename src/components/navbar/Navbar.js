@@ -8,7 +8,7 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
     return (
         <nav className="navbar">
           <div className="nav_icon" onClick={() => openSidebar()}>
-            <i className="fa-solid fa-magnifying-glass" aria-hidden="true">&lt;</i>
+            <i className="fas fa-bars" aria-hidden="true"></i>
           </div>
 
           <div className="navbar__left">

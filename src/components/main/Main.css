@@ -38,7 +38,7 @@ main {
     margin: 20px 0;
 }
 
-.card {
+.card-dashboard {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -50,8 +50,9 @@ main {
     box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #FFF;
 }
 
-.card_inner {
+.card-dashboard_inner {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }

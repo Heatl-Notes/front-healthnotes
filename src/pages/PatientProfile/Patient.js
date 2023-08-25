@@ -1,15 +1,10 @@
-import { useState } from 'react';
 import React from 'react';
 
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
-import Main from '../../components/main/Main';
-
+import { useState } from 'react';
 
 import './style.css';
 
-
-const PatientProfile = () => {
+const Patient = ({ patientData }) => {
     const [modoEdicao, setModoEdicao] = useState(false);
     const sairModoEdicao = () => {setModoEdicao(false);};
     const abrirModoEdicao = () => {setModoEdicao(true);};
@@ -18,16 +13,13 @@ const PatientProfile = () => {
     <div>
     {modoEdicao ? (
         <div className="patient__profile">
-            <div className="patient__profile__button__edit" onClick={sairModoEdicao}>Cancelar</div>                    
+            <button className="patient__profile__button__edit" onClick={sairModoEdicao}>Cancelar</button>
+
             <form>
     
                 <div className="form-group-patient-edit">
                     <label htmlFor="nome">Nome: </label>
                     <input type="text" id="nome" name="nome" defaultValue="José Silva" />
-                </div>
-                <div className="form-group-patient-edit">
-                    <label htmlFor="cpf">Cpf: </label>
-                    <input type="cpf" id="cpf" name="cpf" defaultValue="11122233344" />
                 </div>
                 <div className="form-group-patient-edit">
                     <label htmlFor="idade">Idade: </label>
@@ -48,17 +40,25 @@ const PatientProfile = () => {
         </div>
     ) : (
         <div className="patient__profile">
-            <div className="patient__profile__button__edit" onClick={abrirModoEdicao}>Editar</div>
-            
-            <p><span class="font-bold">Cpf:</span> 12345678911</p>
-            <p><span class="font-bold">Idade:</span> 77</p>
-            <p><span class="font-bold">Comorbidades:</span> comorbidades</p>
-            <p><span class="font-bold">Procedimentos:</span> procedimentos</p>
+            <button className="patient__profile__button__edit" onClick={abrirModoEdicao}>Editar</button>
+
+            <p><span className="font-bold">Cpf:</span> {patientData.cpf}</p>
+            <p><span className="font-bold">Idade:</span> {patientData.age}</p>
+            {patientData.comorbidities ? (
+                <p><span className="font-bold">Comorbidades:</span> {patientData.comorbidities.map(comorbidade => comorbidade.description).join(', ')}</p>
+            ) : (
+                <p><span className="font-bold">Comorbidades:</span> Nenhuma comorbidade disponível</p>
+            )}
+            {patientData.complexProcedures ? (
+                <p><span className="font-bold">Procedimentos:</span> {patientData.complexProcedures.map(procedimento => procedimento.description).join(', ')}</p>
+            ) : (
+                <p><span className="font-bold">Procedimentos:</span> Nenhum procedimento disponível</p>
+            )}
         </div>
     )}
     </div>
   );
 }
 
-export default PatientProfile;
+export default Patient;
 

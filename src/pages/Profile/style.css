@@ -40,6 +40,7 @@ main {
 } */
 
 .profile__card {
+    position: relative;
     max-width: 800px;
     margin: 50px auto;
     background-color: #fff;
@@ -69,9 +70,16 @@ main {
 
 .profile__card__edit__link {
     position: absolute;
+    top: 0;
+    right: 0;
+    /* border-radius: 5px; */
+    padding: 10px;
+    margin-top: 5px;
+    margin-right: 5px;
+    /* background-color: transparent; */
+    border: none;
     cursor: pointer;
-    text-decoration: underline;
-    margin-left: 700px
+    font-weight: bold;
 }
   
 .profile__card__edit__link:hover {

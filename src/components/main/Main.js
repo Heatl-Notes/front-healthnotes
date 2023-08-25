@@ -19,15 +19,15 @@ const Main = () => {
 
             <div className="main__cards">
                 
-                <div className="card">
+                <div className="card-dashboard">
                     <i className="fa fa-file-text fa-2x text-lightblue"></i>
-                    <div className="card_inner">
+                    <div className="card-dashboard_inner">
                         <p className="text-primary-p">Número de pacientes</p>
                         <span className="font-bold-text-title">5</span>
                     </div>
                 </div>
 
-                <div className="card">
+                {/* <div className="card">
                     <i className="fa fa-money fa-2x text-red"></i>
                     <div className="card_inner">
                         <p className="text-primary-p">Pagamentos</p>
@@ -49,7 +49,7 @@ const Main = () => {
                         <p className="text-primary-p">Categorias</p>
                         <span className="font-bold-text-title">40</span>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="charts">
@@ -58,11 +58,10 @@ const Main = () => {
                     <div className="charts__left__title">
                         <div>
                             <h1>Lembretes</h1>
-                            <p>Ubatuba, São Paulo, BR</p>
+                            
                         </div>
-                        <i className="fa fa-usd"></i>
+                        
                     </div>
-                    {/* <Chart /> */}
                 </div>
 
                 {/* <div className="charts__right">
