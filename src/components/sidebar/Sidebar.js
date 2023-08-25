@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Sidebar.css';
-import logo from '../../assets/logo.jpg';
+import logoHN from '../../assets/logoHN.jpg';
 
 const Sidebar = ({ sidebarOpen, closeSideBar }) => {
   
@@ -27,8 +27,8 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
         <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
           <div className="sidebar__title">
             <div className="sidebar__img">
-              <img src={logo} alt="logo" />
-              <h1>Raphael</h1>
+              <img src={logoHN} alt="logo" />
+              <h1>Health Notes</h1>
             </div>
 
             <i 
@@ -47,11 +47,11 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             <h2>ADMIN</h2>
             <div className="sidebar__link">
               <i className="fa-solid fa-house"></i>
-              <a href="#">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </div>
             <div className="sidebar__link">
               <i className="fa fa-building"></i>
-              <a href="#">Pacientes</a>
+              <a href="/patients">Pacientes</a>
             </div>
             {/* <div className="sidebar__link">
               <i className="fa fa-archive"></i>

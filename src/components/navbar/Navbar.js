@@ -8,27 +8,32 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
     return (
         <nav className="navbar">
           <div className="nav_icon" onClick={() => openSidebar()}>
-            <i className="fa-solid fa-magnifying-glass" aria-hidden="true">Voltar</i>
+            <i className="fa-solid fa-magnifying-glass" aria-hidden="true">&lt;</i>
           </div>
 
           <div className="navbar__left">
-            <a href="#">Produtos</a>
+            {/* <a href="#">Produtos</a>
             <a href="#">Usuários</a>
-            <a href="#" className="active_link">Admin</a>
+            <a href="#" className="active_link">Admin</a> */}
           </div>
 
           <div className="navbar__right">
-            <a href="#">
+            {/* <a href="#">
               <i className="fa-solid fa-magnifying-glass"></i>
-            </a>
+            </a> */}
 
-            <a href="#">
+            {/* <a href="#">
               <i className="fa fa-search">Botao</i>
-            </a>
+            </a> */}
 
-            <a href="#">
-              <img width="30px" src={avatar} alt="avatar"/>
-            </a>
+            <div className="navbar__right__profile">
+              <a href="/profile">
+                <p>Raphael Agra</p>
+                <img className="profile_image" src={avatar} alt="avatar"/>
+              </a>
+            </div>
+
+
           </div>
         </nav>
     )

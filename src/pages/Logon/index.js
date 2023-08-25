@@ -22,7 +22,7 @@ function Logon() {
       // localStorage.setItem('ongId', id);
       // localStorage.setItem('ongName', response.data.name);
 
-      navigate('/home');
+      navigate('/dashboard');
     }catch (err) {
       alert('Falha no login, tente novamente!!');
     } 

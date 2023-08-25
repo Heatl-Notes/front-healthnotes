@@ -1,0 +1,384 @@
+main {
+    background: #f3f4f6;
+    grid-area: main;
+    overflow-y: auto;
+}
+
+.main__container {
+    display: grid;
+    padding: 20px 35px;
+    gap: 10px;
+}
+
+.main__title {
+    display: flex;
+    align-items: center;
+}
+
+.main__title > img {
+    max-height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.main__greeting > h1 {
+    font-size: 24px;
+    color: #2e4a66;
+    margin-bottom: 5px;
+}
+
+.main__greeting > p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #a5aaad;
+}
+
+.charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.agenda__container {
+    padding: 25px;
+    border-radius: 5px;
+    background: #FFF;
+    /* box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #FFF; */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.agenda__container__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.agenda__container__title > div > h1 {
+    font-size: 24px;
+    color: #090a0c;
+    margin-bottom: 5px;
+}
+
+.agenda__container__title > div > p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #a5aaad;
+}
+
+.agenda__container__title > i {
+    color: #FFF;
+    font-size: 20px;
+    background: #FFC100;
+    border-radius: 200px 0px 200px 200px;
+    -moz-border-radius: 200px 0px 200px 200px;
+    -webkit-border-radius: 200px 0px 200px 200px;
+    border: 0px solid #000;
+    padding: 15px;
+}
+
+.checklist__container {
+    padding: 25px;
+    border-radius: 5px;
+    background: #FFF;
+    /* box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #FFF; */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.checklist__container__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checklist__container__title > div > h1 {
+    font-size: 24px;
+    color: #090a0c;
+    margin-bottom: 5px;
+}
+
+.checklist__container__title > div > p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #a5aaad;
+}
+
+.checklist__container__title > i {
+    color: #FFF;
+    font-size: 20px;
+    background: #39447a;
+    border-radius: 200px 0px 200px 200px;
+    border: 0px solid #000;
+    padding: 15px;
+}
+
+
+/* css da agenda de eventos */
+
+.events__list {   
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.event__columns {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: #c4c4c4;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.event__columns p {
+    font-weight: bold;
+    color: #333;
+}
+
+.event {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: #eeeeee;
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.event__time {
+    flex: 1;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.event__description {
+    flex: 2;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.event__caretaker {
+    flex: 1;
+    font-size: 14px;
+}
+
+
+
+/* seleçao de data */
+
+.date__selector {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.date__selector label {
+    margin-right: 10px;
+}
+
+.date__selector select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+
+
+/* Estilos para a checklist */
+.checklist__items {
+    margin-top: 20px;
+}
+
+.checklist__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.checklist__item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checklist__item span {
+    flex-grow: 1;
+}
+
+/* Estilos para os itens concluídos */
+.checklist__item .completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Estilos para o título da checklist */
+/* .charts__right__title {
+    margin-top: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+} */
+
+.checklist__new {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .checklist__new input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .checklist__new button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .checklist__new button:hover {
+    background-color: #2980b9;
+  }
+
+  .checklist__delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  .checklist__delete-button:hover {
+    background-color: darkred;
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+/* PatientProfile.css */
+
+.patient__profile {
+    display: flex;
+    flex-direction: column;
+
+    /* align-items: center; */
+    /* text-align: center; */
+
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    
+    
+    /* height: 25vh; */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.patient__profile h1 {
+    margin: 0;
+}
+
+.patient__profile p {
+    margin: 5px 0;
+}
+
+.patient__profile__button__edit {
+    position: absolute;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 1090px
+}
+  
+.patient__profile__button__edit:hover {
+    color: darkblue;
+}
+/* 
+.form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.form-group-patient-edit {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.form-group-patient-edit label {
+    flex: 1;
+    font-weight: bold;
+    /* margin-left: 20px; */
+}
+
+.form-group-patient-edit input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 30%;
+    margin-right: 700px;
+}
+
+.edit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+
+@media only screen and (max-width: 855px) {
+    .main__cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 0px;
+    }
+
+    .patient__profile {
+        grid-template-columns: 1fr;
+        
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .charts__right__cards {
+        grid-template-columns: 1fr;
+        align-items: center;
+        margin-top: 30px;
+    }
+}

@@ -9,15 +9,11 @@ import Main from '../../components/main/Main';
 import './style.css';
 
 
-const Home = () => {
+const Dashboard = () => {
 
-const [sidebarOpen, setSidebarOpen] = useState(false);
-const openSidebar = () => {
-  setSidebarOpen(true);
-};
-const closeSideBar = () => {
-  setSidebarOpen(false);
-};
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const openSidebar = () => {setSidebarOpen(true);};
+  const closeSideBar = () => {setSidebarOpen(false);};
 
   return (
     <div className="container">
@@ -28,4 +24,4 @@ const closeSideBar = () => {
   );
 }
 
-export default Home;
+export default Dashboard;
