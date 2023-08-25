@@ -46,7 +46,6 @@ const PatientProfile = () => {
       getPatientData();
   }, [patientId]);
 
-
   return (
     <div className="container">
       <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
