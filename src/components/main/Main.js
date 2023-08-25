@@ -1,18 +1,54 @@
 import React from 'react';
 
+import { useState, useEffect } from 'react';
+import { apiUrl } from '../../config';
+
 import hello from '../../assets/hello.jpg';
 
 import './Main.css';
 
 
 const Main = () => {
+
+
+    const [caregiverData, setCaregiverData] = useState({});
+    const caregiverId = localStorage.getItem('userCpf');
+  
+    const fetchCaregiverById = async (caregiverId) => {
+      try {
+          const response = await fetch(`${apiUrl}/caregiver/${caregiverId}`, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': localStorage.getItem('token'),
+              },
+          });
+          const data = await response.json();
+          return data;
+      } catch (error) {
+          console.error('Error fetching caregiver:', error);
+          return [];
+      }
+    }
+  
+  
+    useEffect(() => {
+      const getCaregiverData = async () => {
+        const caregiverDataAux = await fetchCaregiverById(caregiverId);
+        setCaregiverData(caregiverDataAux);
+      };
+      getCaregiverData();
+    }, []);
+  
+
+
     return (
         <main>
           <div className="main__container">
             <div className="main__title">
               <img src={hello} alt="hello" />
               <div className="main_greeting">
-                <h1>Olá Raphael</h1>
+                <h1>Olá {caregiverData.name}</h1>
                 <p> Bem vindo ao seu painel</p>
               </div>
             </div>

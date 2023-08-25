@@ -1,118 +1,170 @@
 import React from 'react';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../config';
+
 
 import logoHN from "../../assets/logoHN.jpg";
 
 import "./style.css";
 
 function Register() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
   const navigate = useNavigate();
 
-  async function handleRegister(e) {
-    e.preventDefault();
+  const [newUser, setNewUser] = useState({
+    name: '',
+    lastname: '',
+    email: '',
+    cpf: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewUser({
+      ...newUser,
+      [name]: value,
+    });
+  };
+
+  const handleRegister = async (event) => {
+    event.preventDefault();
 
     try {
-      // Realize a lógica de registro aqui
-      // Exemplo: const response = await api.post('register', { firstName, lastName, email, cpf, password });
-      
-      // Navegue para a tela de home após o registro
-      navigate('/home');
-    } catch (err) {
-      alert('Falha no cadastro, tente novamente!!');
+      const response = await fetch(`${apiUrl}/cadastro`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      if (response.ok) {
+        console.log('Usuário cadastrado com sucesso!');
+        navigate('/');
+        // updatePatientsList();
+        // toggleAddPatientButton();
+      } else {
+        console.error('Erro ao cadastrar usuário');
+      }
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
     }
-  }
+  };
+
+  // const handleCancel = () => {
+  //   // Limpa os campos do formulário e fecha o formulário
+  //   setNewUser({
+  //     name: '',
+  //     lastname: '',
+  //     email: '',
+  //     cpf: '',
+  //     password: '',
+  //     confirmPassword: '',
+  //   });
+
+  //   // toggleAddPatientButton();
+  // };
+
+  useEffect(() => {
+    console.log(newUser);
+}, [newUser]);
+
+
+
 
   return (
     <div className="container-login">
       <div className="container-login-box">
         <div className="wrap-login">
           <form className="login-form">
-            <div className="login-img">
-              <img src={logoHN} alt="Logo Health Notes" />
-            </div>
+              <div className="login-img">
+                <img src={logoHN} alt="Logo Health Notes" />
+              </div>
 
-            <div className="login-message">
-              <span className="login-form-title"> Cadastro </span>
-            </div>
+              <div className="login-message">
+                <span className="login-form-title"> Cadastro </span>
+              </div>
 
-            <div className="wrap-input">
-              <input
-                className={firstName !== "" ? "has-val input" : "input"}
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Nome"></span>
-            </div>
+              <div className="wrap-input">
+                <input
+                  id="name"
+                  className="input"
+                  name="name"
+                  type="text"
+                  onChange={handleInputChange}
+                />
+                <span className="focus-input" data-placeholder="Nome"></span>
+              </div>
 
-            <div className="wrap-input">
-              <input
-                className={lastName !== "" ? "has-val input" : "input"}
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Sobrenome"></span>
-            </div>
+              <div className="wrap-input">
+                <input
+                  id="lastname"
+                  className="input"
+                  name="lastname"
+                  type="text"
+                  onChange={handleInputChange}
+                />
+                <span className="focus-input" data-placeholder="Sobrenome"></span>
+              </div>
 
-            <div className="wrap-input">
-              <input
-                className={email !== "" ? "has-val input" : "input"}
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Email"></span>
-            </div>
+              <div className="wrap-input">
+                <input
+                  id="email"
+                  className="input"
+                  name="email"
+                  type="email"
+                  onChange={handleInputChange}
+                />
+                <span className="focus-input" data-placeholder="Email"></span>
+              </div>
 
-            <div className="wrap-input">
-              <input
-                className={cpf !== "" ? "has-val input" : "input"}
-                type="text"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="CPF"></span>
-            </div>
+              <div className="wrap-input">
+                <input
+                  id="cpf"
+                  className="input"
+                  name="cpf"
+                  type="text"
+                  onChange={handleInputChange}
+                />
+                <span className="focus-input" data-placeholder="CPF"></span>
+              </div>
 
-            <div className="wrap-input">
-              <input
-                className={password !== "" ? "has-val input" : "input"}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Senha"></span>
-            </div>
+              <div className="wrap-input">
+                <input
+                  id="password"
+                  className="input"
+                  name="password"
+                  type="password"
+                  onChange={handleInputChange}
+                />
+                <span className="focus-input" data-placeholder="Senha"></span>
+              </div>
 
-            <div className="wrap-input">
-              <input
-                className={confirmPassword !== "" ? "has-val input" : "input"}
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              <span className="focus-input" data-placeholder="Confirmar Senha"></span>
-            </div>
+              <div className="wrap-input">
+                <input
+                  id="confirmPassword"
+                  className="input"
+                  name="confirmPassword"
+                  type="password"
+                  onChange={handleInputChange}
+                />
+                <span className="focus-input" data-placeholder="Confirmar Senha"></span>
+              </div>
 
-            <div className="container-login-form-btn">
-              <button className="login-form-btn" onClick={handleRegister}>Cadastrar</button>
-            </div>
+              <div className="container-login-form-btn">
+                <button className="login-form-btn" onClick={handleRegister}>Cadastrar</button>
+              </div>
 
-            <div className="text-center">
-              <span className="txt1">Já possui uma conta? </span>
-              <a className="txt2" href="/">
-                Fazer login
-              </a>
-            </div>
+              <div className="text-center">
+                <span className="txt1">Já possui uma conta? </span>
+                <a className="txt2" href="/">
+                  Fazer login
+                </a>
+              </div>
           </form>
         </div>
       </div>
