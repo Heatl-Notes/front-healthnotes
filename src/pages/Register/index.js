@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { apiUrl } from '../../config';
 
@@ -69,9 +69,9 @@ function Register() {
   //   // toggleAddPatientButton();
   // };
 
-  useEffect(() => {
-    console.log(newUser);
-}, [newUser]);
+//   useEffect(() => {
+//     console.log(newUser);
+// }, [newUser]);
 
 
 
@@ -92,7 +92,7 @@ function Register() {
               <div className="wrap-input">
                 <input
                   id="name"
-                  className="input"
+                  className={newUser.name !== "" ? "has-val input" : "input"}
                   name="name"
                   type="text"
                   onChange={handleInputChange}
@@ -103,7 +103,7 @@ function Register() {
               <div className="wrap-input">
                 <input
                   id="lastname"
-                  className="input"
+                  className={newUser.lastname !== "" ? "has-val input" : "input"}
                   name="lastname"
                   type="text"
                   onChange={handleInputChange}
@@ -114,7 +114,7 @@ function Register() {
               <div className="wrap-input">
                 <input
                   id="email"
-                  className="input"
+                  className={newUser.email !== "" ? "has-val input" : "input"}
                   name="email"
                   type="email"
                   onChange={handleInputChange}
@@ -125,7 +125,7 @@ function Register() {
               <div className="wrap-input">
                 <input
                   id="cpf"
-                  className="input"
+                  className={newUser.cpf !== "" ? "has-val input" : "input"}
                   name="cpf"
                   type="text"
                   onChange={handleInputChange}
@@ -136,7 +136,7 @@ function Register() {
               <div className="wrap-input">
                 <input
                   id="password"
-                  className="input"
+                  className={newUser.password !== "" ? "has-val input" : "input"}
                   name="password"
                   type="password"
                   onChange={handleInputChange}
@@ -147,7 +147,7 @@ function Register() {
               <div className="wrap-input">
                 <input
                   id="confirmPassword"
-                  className="input"
+                  className={newUser.confirmPassword !== "" ? "has-val input" : "input"}
                   name="confirmPassword"
                   type="password"
                   onChange={handleInputChange}
