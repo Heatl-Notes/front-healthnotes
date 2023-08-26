@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiUrl } from '../../config';
 
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
 import Patient from './Patient';
 import Checklist from './Checklist';
 import Agenda from './Agenda';
@@ -14,10 +12,6 @@ import './style.css';
 
 const PatientProfile = () => {
   const { patientId } = useParams();
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const openSidebar = () => {setSidebarOpen(true);};
-  const closeSideBar = () => {setSidebarOpen(false);};
 
   const [patientData, setPatientData] = useState({});
 
@@ -47,29 +41,24 @@ const PatientProfile = () => {
   }, [patientId]);
 
   return (
-    <div className="container">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} />
+    <div className="main__container">
 
-      <main>
-          <div className="main__container">
-            <div className="main__title">
-              <img className="patient_image" alt={`Foto do paciente ${patientData.name}`} src={patientData.profilePhoto}></img>
-              <div className="main_greeting">
-                <h1>{patientData.name}</h1>
-              </div>
-            </div>
+      <div className="main__title">
 
-            <Patient patientData={patientData} />
+        <img className="patient_image" alt={`Foto do paciente ${patientData.name}`} src={patientData.profilePhoto}></img>
+        <div className="main_greeting">
+          <h1>{patientData.name}</h1>
+        </div>
+        
+      </div>
 
-            <div className="charts">
-                <Agenda patientId={patientId}/>
-                <Checklist/>
-            </div>
-          </div>
-      </main>
+      <Patient patientData={patientData} />
 
-      
+      <div className="charts">
+          <Agenda patientId={patientId}/>
+          <Checklist/>
+      </div>
+
     </div>
   );
 }

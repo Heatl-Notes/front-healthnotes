@@ -7,22 +7,16 @@ import { apiUrl } from '../../config';
 
 import './style.css';
 
-import Sidebar from '../../components/sidebar/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
 import AddPatient from './AddPatient';
 import PatientsCards from './PatientsCards';
 
 const Patients = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const openSidebar = () => {setSidebarOpen(true);};
-    const closeSideBar = () => {setSidebarOpen(false);};
-    // const navigate = useNavigate();
 
+    // const navigate = useNavigate();
 
     const [showAddPatientButton, setShowAddPatientButton] = useState(true);
     const toggleAddPatientButton = () => {setShowAddPatientButton(!showAddPatientButton);}
 
-    
     const [patients, setPatients] = useState([]); 
     const fetchPatients = async () => {
         try {
@@ -53,20 +47,15 @@ const Patients = () => {
 
 
     return (
-    <div className="container">
-        <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-        <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} />
-        <main>
-          <div className="main__container">
+        <div className="main__container">
 
             <div className="main__title">
-              <div className="main_greeting">
+                <div className="main_greeting">
                 <h1>Painel de Pacientes</h1>
                 {/* <p> Bem vindo ao seu painel</p> */}
-              </div>
+                </div>
             </div>
 
-            
             {showAddPatientButton ? (
                 <PatientsCards patients={patients} />
             ) : (
@@ -79,9 +68,7 @@ const Patients = () => {
                 </button>
             )}
 
-          </div>
-        </main>
-    </div>
+        </div>
     )
 };
 

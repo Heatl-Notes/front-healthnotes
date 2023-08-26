@@ -1,31 +1,31 @@
-main {
+/* main {
     background: #f3f4f6;
     grid-area: main;
     overflow-y: auto;
-}
+} */
 
-.profile__container {
+.main__container {
     padding: 20px 35px;
 }
 
-.profile__title {
+.main__title {
     display: flex;
     align-items: center;
 }
 
-.profile__title > img {
+.main__title > img {
     max-height: 100px;
     object-fit: contain;
     margin-right: 20px;
 }
 
-.profile__greeting > h1 {
+.main__greeting > h1 {
     font-size: 24px;
     color: #2e4a66;
     margin-bottom: 5px;
 }
 
-.profile__greeting > p {
+.main__greeting > p {
     font-size: 14px;
     font-weight: 700;
     color: #a5aaad;

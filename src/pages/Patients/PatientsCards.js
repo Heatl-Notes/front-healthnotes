@@ -8,7 +8,7 @@ const PatientsCards = ({ patients }) => {
     const navigate = useNavigate();
 
     const handleCardClick = (patientId) => {
-        navigate(`/patient/${patientId}`);
+        navigate(`/patient/${patientId}#`);
     };
 
     return (

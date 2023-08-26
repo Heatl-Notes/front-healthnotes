@@ -7,24 +7,19 @@ import logoHN from '../../assets/logoHN.jpg';
 const Sidebar = ({ sidebarOpen, closeSideBar }) => {
   
   const navigate = useNavigate();
-  const handleLogout = (e) => {
-    e.preventDefault();
 
-    try {
-
-      
-      // Limpar localStorage
-      localStorage.removeItem('token');
-      localStorage.removeItem('userCpf');
-      localStorage.removeItem('userName');
-      
-      // Redirecionar para a página de login (ou outra página)
-      navigate('/');
-    } catch (err) {
-      console.error('Erro no logout:', err);
-      alert('Falha no logout, tente novamente!!');
-    }
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
   }
+
+  const goToDashboard = () => {
+    navigate('/dashboard');
+  };
+
+  const goToPatients = () => {
+    navigate('/patients');
+  };
 
 
     return (
@@ -49,13 +44,13 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             </div> */}
 
             <h2>ADMIN</h2>
-            <div className="sidebar__link">
+            <div className="sidebar__link" onClick={goToDashboard}>
               <i className="fas fa-tachometer-alt"></i>
-              <a href="/dashboard">Dashboard</a>
+              <a href="#">Dashboard</a>
             </div>
-            <div className="sidebar__link">
+            <div className="sidebar__link" onClick={goToPatients}>
               <i className="fas fa-users"></i>
-              <a href="/patients">Pacientes</a>
+              <a href="#">Pacientes</a>
             </div>
             {/* <div className="sidebar__link">
               <i className="fa fa-archive"></i>

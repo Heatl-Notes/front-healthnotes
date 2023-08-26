@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useState, useEffect } from 'react';
 import { apiUrl } from '../../config';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './Navbar.css';
 import avatar from '../../assets/avatar.jpg'
@@ -11,6 +12,9 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
 
   const [caregiverData, setCaregiverData] = useState({});
   const caregiverId = localStorage.getItem('userCpf');
+
+  const navigate = useNavigate();
+
 
   const fetchCaregiverById = async (caregiverId) => {
     try {
@@ -29,6 +33,9 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
     }
   }
 
+  const goToProfile = () => {
+    navigate('/profile');
+  };
 
   useEffect(() => {
     const getCaregiverData = async () => {
@@ -51,8 +58,9 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             <a href="#">Usuários</a>
             <a href="#" className="active_link">Admin</a> */}
           </div>
+          <Link className="button" to="/dashboard">Cadastrar Novo Caso</Link>
 
-          <div className="navbar__right">
+          <div className="navbar__right" onClick={goToProfile}>
             {/* <a href="#">
               <i className="fa-solid fa-magnifying-glass"></i>
             </a> */}
@@ -62,10 +70,10 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             </a> */}
 
             <div className="navbar__right__profile">
-              <a href="/profile">
+              <a href="#">
                 <p>{caregiverData.name} {caregiverData.lastname}</p>
               </a>
-              <a href="/profile">
+              <a href="#">
                 <img className="profile_image" src={avatar} alt="avatar"/>
               </a>
             </div>
