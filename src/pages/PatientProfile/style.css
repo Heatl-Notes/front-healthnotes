@@ -41,6 +41,7 @@ main {
 }
 
 .agenda__container {
+    position: relative;
     padding: 25px;
     border-radius: 5px;
     background: #FFF;
@@ -77,6 +78,90 @@ main {
     padding: 15px;
 }
 
+/* .agenda__container__events {
+    display: grid;
+} */
+
+/* css da agenda de eventos */
+
+.events__list {   
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    background-color: #eeeeee;
+
+    border-radius: 5px;
+}
+
+.event__columns {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: #c4c4c4;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.event__columns p {
+    font-weight: bold;
+    color: #333;
+}
+
+.event {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 10px;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.event__time {
+    flex: 1;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.event__description {
+    flex: 2;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.event__caretaker {
+    flex: 1;
+    font-size: 14px;
+}
+
+.agenda__add__event{
+    display: flex;
+    margin-top: 20px;
+    justify-content: end;
+}
+
+.agenda__add__event-button {
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s; 
+
+}
+
+.add-event-button:hover {
+    background-color: #2980b9;
+}
+
+
+
+
+
+
 .checklist__container {
     padding: 25px;
     border-radius: 5px;
@@ -103,63 +188,68 @@ main {
     color: #a5aaad;
 }
 
-.checklist__container__title > i {
+/* .checklist__container__title > i {
     color: #FFF;
     font-size: 20px;
     background: #39447a;
     border-radius: 200px 0px 200px 200px;
     border: 0px solid #000;
     padding: 15px;
+} */
+
+
+
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-/* css da agenda de eventos */
-
-.events__list {   
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
 }
 
-.event__columns {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    background-color: #c4c4c4;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.event__columns p {
+.modal label {
+    display: block;
     font-weight: bold;
-    color: #333;
+    margin-bottom: 5px;
 }
 
-.event {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    background-color: #eeeeee;
+.modal input[type="time"],
+.modal textarea {
+    width: 100%;
     padding: 10px;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-}
-
-.event__time {
-    flex: 1;
-    font-size: 14px;
-    margin-right: 20px;
-}
-
-.event__description {
-    flex: 2;
-    font-size: 14px;
-    margin-right: 20px;
-}
-
-.event__caretaker {
-    flex: 1;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 14px;
 }
+
+.modal button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.modal button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 
 
 
@@ -243,7 +333,7 @@ main {
     font-size: 14px;
     transition: background-color 0.3s;
   }
-  
+
   .checklist__new button:hover {
     background-color: #2980b9;
   }

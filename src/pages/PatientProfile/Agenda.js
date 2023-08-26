@@ -1,4 +1,6 @@
 import React from 'react';
+import Modal from 'react-modal';
+
 
 import { useState, useEffect } from 'react';
 import { apiUrl } from '../../config';
@@ -92,6 +94,50 @@ const Agenda = ({ patientId }) => {
     }, []);
 
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openAddEventModal = () => {setIsModalOpen(true);};
+    const closeAddEventModal = () => {setIsModalOpen(false);};
+
+    const [formData, setFormData] = useState({
+        date: '',
+        time: '',
+        description: ''
+    });
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const addEvent = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(`${apiUrl}/patient/${patientId}/add-schedule`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('token'),
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    date: selectedDate
+                })
+            });
+
+            if (response.ok) {
+                updateEventsByDate(selectedDate);
+                closeAddEventModal();
+            } else {
+                console.error('Erro ao adicionar evento');
+            }
+        } catch (error) {
+            console.error('Erro na solicitação POST:', error);
+        }
+    };
 
     return (
         <div className="agenda__container">
@@ -112,7 +158,7 @@ const Agenda = ({ patientId }) => {
                 </div>
             </div>
 
-            <div className="events__container">
+            <div className="agenda__container__events">
                 <div className="events__list">
                     <div className="event__columns">
                         <p className="event__column">Horário</p>
@@ -123,29 +169,36 @@ const Agenda = ({ patientId }) => {
                     {events.map((event, index) => (
                         <div className="event" key={index}>
                             <p className="event__time">{event.time}</p>
-                            <p className="event__description">{event.observation}</p>
+                            <p className="event__description">{event.description}</p>
                             <p className="event__caretaker">{caregiverNames[event.caregiverId]}</p>
                         </div>
                     ))}
-
-                    {/* <div className="event">
-                        <p className="event__time">09:00 AM</p>
-                        <p className="event__description">Reunião de equipe</p>
-                        <p className="event__caretaker">João Silva</p>
-                    </div>
-                    <div className="event">
-                        <p className="event__time">02:30 PM</p>
-                        <p className="event__description">Apresentação do projeto</p>
-                        <p className="event__caretaker">Maria Oliveira</p>
-                    </div>
-                    <div className="event">
-                        <p className="event__time">05:00 PM</p>
-                        <p className="event__description">Ligar para cliente</p>
-                        <p className="event__caretaker">Carlos Santos</p>
-                    </div> */}
                     
                 </div>
             </div>
+
+            <div className="agenda__add__event">
+                <button className="agenda__add__event-button" onClick={() => openAddEventModal()}>Adicionar Evento</button>
+            </div>
+            
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={closeAddEventModal}
+                contentLabel="Adicionar Evento"
+                className="modal"
+                appElement={document.getElementById('root')}
+            >
+                <h2>Adicionar Evento</h2>
+                <form onSubmit={addEvent}>
+                    <label htmlFor="time">Horário:</label>
+                    <input type="time" id="time" name="time" onChange={handleInputChange} />
+
+                    <label htmlFor="description">Descrição:</label>
+                    <textarea id="description" name="description" onChange={handleInputChange} />
+
+                    <button type="submit">Adicionar</button>
+                </form>
+            </Modal>
         </div>
     );
 }

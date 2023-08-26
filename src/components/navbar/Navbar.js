@@ -64,6 +64,8 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             <div className="navbar__right__profile">
               <a href="/profile">
                 <p>{caregiverData.name} {caregiverData.lastname}</p>
+              </a>
+              <a href="/profile">
                 <img className="profile_image" src={avatar} alt="avatar"/>
               </a>
             </div>

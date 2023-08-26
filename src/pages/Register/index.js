@@ -43,7 +43,7 @@ function Register() {
       });
 
       if (response.ok) {
-        console.log('Usuário cadastrado com sucesso!');
+        alert('Usuário cadastrado com sucesso!');
         navigate('/');
         // updatePatientsList();
         // toggleAddPatientButton();
@@ -54,27 +54,6 @@ function Register() {
       console.error('Erro ao cadastrar usuário:', error);
     }
   };
-
-  // const handleCancel = () => {
-  //   // Limpa os campos do formulário e fecha o formulário
-  //   setNewUser({
-  //     name: '',
-  //     lastname: '',
-  //     email: '',
-  //     cpf: '',
-  //     password: '',
-  //     confirmPassword: '',
-  //   });
-
-  //   // toggleAddPatientButton();
-  // };
-
-//   useEffect(() => {
-//     console.log(newUser);
-// }, [newUser]);
-
-
-
 
   return (
     <div className="container-login">

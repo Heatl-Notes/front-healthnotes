@@ -42,10 +42,13 @@ const Checklist = () => {
 
     return (
         <div className="checklist__container">
+            
+
             <div className="checklist__container__title">
                 <div>
-                <h1>Check List</h1>
+                    <h1>Check List</h1>
                 </div>
+                <i className="fas fa-tasks fa-2x text-green"></i>
             </div>
 
             <div className="checklist__new">

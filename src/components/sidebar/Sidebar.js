@@ -7,19 +7,23 @@ import logoHN from '../../assets/logoHN.jpg';
 const Sidebar = ({ sidebarOpen, closeSideBar }) => {
   
   const navigate = useNavigate();
-  async function handleLout(e) {
+  const handleLogout = (e) => {
     e.preventDefault();
 
     try {
-      // const response = await api.post('sessions', { id });
-      
-      // localStorage.setItem('ongId', id);
-      // localStorage.setItem('ongName', response.data.name);
 
+      
+      // Limpar localStorage
+      localStorage.removeItem('token');
+      localStorage.removeItem('userCpf');
+      localStorage.removeItem('userName');
+      
+      // Redirecionar para a página de login (ou outra página)
       navigate('/');
-    }catch (err) {
+    } catch (err) {
+      console.error('Erro no logout:', err);
       alert('Falha no logout, tente novamente!!');
-    } 
+    }
   }
 
 
@@ -87,9 +91,9 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
               <i className="fa fa-file-text"></i>
               <a href="#">Política de privacidade</a>
             </div> */}
-            <div className="sidebar__logout">
+            <div className="sidebar__logout" onClick={handleLogout}>
             <i className="fas fa-sign-out-alt"></i>
-              <a href="/">Log out</a>
+              <a href="#">Log out</a>
             </div>
           </div>
 
