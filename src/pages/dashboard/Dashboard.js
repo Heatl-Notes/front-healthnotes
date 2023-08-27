@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { apiUrl } from '../../config';
+import { apiUrl } from '../../utils/config';
 
 import hello from '../../assets/hello.jpg';
 
-import './style.css';
+import './Dashboard.css';
 
 
 const Dashboard = () => {
@@ -66,7 +66,6 @@ const Dashboard = () => {
 
 
   return (
-    
       <div className="main__container">
         <div className="main__title">
           <img src={hello} alt="hello" />
@@ -157,7 +156,6 @@ const Dashboard = () => {
             </div>
         </div>
       </div>
-
   );
 };
 

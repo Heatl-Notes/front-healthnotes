@@ -3,11 +3,11 @@ import Modal from 'react-modal';
 
 
 import { useState, useEffect } from 'react';
-import { apiUrl } from '../../config';
+import { apiUrl } from '../../utils/config';
 
 
 
-import './style.css';
+import './PatientProfile.css';
 
 
 const Agenda = ({ patientId }) => {
@@ -98,7 +98,7 @@ const Agenda = ({ patientId }) => {
     const openAddEventModal = () => {setIsModalOpen(true);};
     const closeAddEventModal = () => {setIsModalOpen(false);};
 
-    const [formData, setFormData] = useState({
+    const [newEvent, setnewEvent] = useState({
         date: '',
         time: '',
         description: ''
@@ -106,7 +106,7 @@ const Agenda = ({ patientId }) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setFormData((prevData) => ({
+        setnewEvent((prevData) => ({
             ...prevData,
             [name]: value,
         }));
@@ -123,7 +123,7 @@ const Agenda = ({ patientId }) => {
                     'Authorization': localStorage.getItem('token'),
                 },
                 body: JSON.stringify({
-                    ...formData,
+                    ...newEvent,
                     date: selectedDate
                 })
             });

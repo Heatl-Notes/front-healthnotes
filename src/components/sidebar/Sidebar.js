@@ -10,7 +10,7 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/');
+    navigate('/login');
   }
 
   const goToDashboard = () => {
@@ -46,11 +46,11 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             <h2>ADMIN</h2>
             <div className="sidebar__link" onClick={goToDashboard}>
               <i className="fas fa-tachometer-alt"></i>
-              <a href="#">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
             </div>
             <div className="sidebar__link" onClick={goToPatients}>
               <i className="fas fa-users"></i>
-              <a href="#">Pacientes</a>
+              <a href="/patients">Pacientes</a>
             </div>
             {/* <div className="sidebar__link">
               <i className="fa fa-archive"></i>
@@ -87,8 +87,8 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
               <a href="#">Política de privacidade</a>
             </div> */}
             <div className="sidebar__logout" onClick={handleLogout}>
-            <i className="fas fa-sign-out-alt"></i>
-              <a href="#">Log out</a>
+              <i className="fas fa-sign-out-alt"></i>
+              <a href="/">Log out</a>
             </div>
           </div>
 

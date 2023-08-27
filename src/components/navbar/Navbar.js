@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { apiUrl } from '../../config';
-import { Link, useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../utils/config';
+import { useNavigate } from 'react-router-dom';
 
 import './Navbar.css';
 import avatar from '../../assets/avatar.jpg'
@@ -58,7 +58,6 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             <a href="#">Usuários</a>
             <a href="#" className="active_link">Admin</a> */}
           </div>
-          <Link className="button" to="/dashboard">Cadastrar Novo Caso</Link>
 
           <div className="navbar__right" onClick={goToProfile}>
             {/* <a href="#">
@@ -70,10 +69,10 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             </a> */}
 
             <div className="navbar__right__profile">
-              <a href="#">
+              <a href="/profile">
                 <p>{caregiverData.name} {caregiverData.lastname}</p>
               </a>
-              <a href="#">
+              <a href="/profile">
                 <img className="profile_image" src={avatar} alt="avatar"/>
               </a>
             </div>

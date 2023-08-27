@@ -136,7 +136,7 @@ main {
 .agenda__add__event{
     display: flex;
     margin-top: 20px;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .agenda__add__event-button {

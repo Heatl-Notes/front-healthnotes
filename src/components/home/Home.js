@@ -4,11 +4,13 @@ import { useState } from 'react';
 
 import Sidebar from '../sidebar/Sidebar';
 import Navbar from '../navbar/Navbar';
+import Main from '../main/Main'
 
-import './Main.css';
+
+// import './Main.css';
 
 
-const Main = ( {children} ) => {
+const Home = ( {children} ) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const openSidebar = () => {setSidebarOpen(true);};
     const closeSideBar = () => {setSidebarOpen(false);};
@@ -18,11 +20,11 @@ const Main = ( {children} ) => {
             <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
             <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} />
             <main>
-                {children}
+                <Main />
             </main>
             
         </div>
     );
 };
 
-export default Main;
+export default Home;

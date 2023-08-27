@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useState } from 'react';
 
-import './style.css';
+import './PatientProfile.css';
 
 const Patient = ({ patientData }) => {
     const [modoEdicao, setModoEdicao] = useState(false);

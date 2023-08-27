@@ -10,6 +10,11 @@ body, html {
   font-family: Nunito, sans-serif;
 }
 
+.container-auth {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .container-login {
   display: grid;
   grid-template-columns: repeat(1, 1fr);

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useState } from 'react';
-import { apiUrl } from '../../config';
+import { apiUrl } from '../../utils/config';
 
-import './style.css';
+import './Patients.css';
 
 
 

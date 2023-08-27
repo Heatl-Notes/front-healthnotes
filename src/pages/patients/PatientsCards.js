@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import './style.css';
+import './Patients.css';
 
 const PatientsCards = ({ patients }) => {
     const navigate = useNavigate();

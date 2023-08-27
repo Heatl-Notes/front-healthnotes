@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { apiUrl } from '../../config';
+import { apiUrl } from '../../utils/config';
 
 // import { useNavigate } from 'react-router-dom';
 
 
-import './style.css';
+import './Patients.css';
 
 import AddPatient from './AddPatient';
 import PatientsCards from './PatientsCards';
@@ -47,28 +47,30 @@ const Patients = () => {
 
 
     return (
-        <div className="main__container">
+        
+            <div className="main__container">
 
-            <div className="main__title">
-                <div className="main_greeting">
-                <h1>Painel de Pacientes</h1>
-                {/* <p> Bem vindo ao seu painel</p> */}
+                <div className="main__title">
+                    <div className="main_greeting">
+                    <h1>Painel de Pacientes</h1>
+                    {/* <p> Bem vindo ao seu painel</p> */}
+                    </div>
                 </div>
+
+                {showAddPatientButton ? (
+                    <PatientsCards patients={patients} />
+                ) : (
+                    <AddPatient toggleAddPatientButton={toggleAddPatientButton} updatePatientsList={updatePatientsList}/>
+                )}
+
+                {showAddPatientButton && (
+                    <button className="add-patient-button" onClick={toggleAddPatientButton}>
+                        <i className="fas fa-user-plus"></i>
+                    </button>
+                )}
+
             </div>
-
-            {showAddPatientButton ? (
-                <PatientsCards patients={patients} />
-            ) : (
-                <AddPatient toggleAddPatientButton={toggleAddPatientButton} updatePatientsList={updatePatientsList}/>
-            )}
-
-            {showAddPatientButton && (
-                <button className="add-patient-button" onClick={toggleAddPatientButton}>
-                    <i className="fas fa-user-plus"></i>
-                </button>
-            )}
-
-        </div>
+        
     )
 };
 
