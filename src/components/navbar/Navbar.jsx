@@ -2,20 +2,22 @@ import React from 'react';
 
 import { useState, useEffect } from 'react';
 import { fetchCaregiverById } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './navbar.css';
 import avatar from '../../assets/avatar.jpg'
 
 
 const Navbar = ({ sidebarOpen, openSidebar }) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const caregiverId = localStorage.getItem('userCpf');
     
     const [caregiverData, setCaregiverData] = useState({});
 
     const goToProfile = () => {
-        navigate('/profile');
+        // navigate('/profile');
+        console.log("clicou");
+        <Link to="/profile"/>
     };
 
     useEffect(() => {
@@ -38,22 +40,15 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             <a href="#" className="active_link">Admin</a> */}
             </div>
 
-            <div className="navbar__right" onClick={goToProfile}>
-                {/* <a href="#">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </a> */}
-
-                {/* <a href="#">
-              <i className="fa fa-search">Botao</i>
-            </a> */}
-
+            <div className="navbar__right" >
+                
                 <div className="navbar__right__profile">
-                    <a href="/profile">
+                    <Link className="oi" to="/profile">
                         <p>{caregiverData.name} {caregiverData.lastname}</p>
-                    </a>
-                    <a href="/profile">
+                    {/* </Link> */}
+                    {/* <Link className="oi" to="/profile"> */}
                         <img className="profile_image" src={avatar} alt="avatar" />
-                    </a>
+                    </Link>
                 </div>
 
 

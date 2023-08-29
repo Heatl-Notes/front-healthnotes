@@ -1,24 +1,26 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import './sidebar.css';
 import logoHN from '../../assets/logoHN.jpg';
 
 const Sidebar = ({ sidebarOpen, closeSideBar }) => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.clear();
-        navigate('/login');
+        // navigate('/login');
     }
 
     const goToDashboard = () => {
-        navigate('/dashboard');
+        // navigate('/');
+        <Link to="/"/>
     };
 
     const goToPatients = () => {
-        navigate('/patients');
+        // navigate('/patients');
+        <Link to="/patients"/>
     };
 
 
@@ -46,7 +48,7 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
                 <h2>ADMIN</h2>
                 <div className="sidebar__link" onClick={goToDashboard}>
                     <i className="fas fa-tachometer-alt"></i>
-                    <a href="/dashboard">Dashboard</a>
+                    <a href="/">Dashboard</a>
                 </div>
                 <div className="sidebar__link" onClick={goToPatients}>
                     <i className="fas fa-users"></i>

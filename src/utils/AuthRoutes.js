@@ -1,19 +1,17 @@
-// import React from 'react';
-// import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-// import Login from '../pages/logon/Logon';
-// import Register from '../pages/register/Register';
-// import Main from '../components/main/Main';
+import Login from '../pages/authPage/Logon';
+import Register from '../pages/authPage/Register';
 
-
-// const AuthRoutes = () => {
-//   return (
-//     <Routes>
-//         <Route path="/main" element={<Main />} />
-//         <Route path="/" element={<Login />}/>
-//         <Route path="/register" element={<Register />} />
-//     </Routes>
-//   );
-// };
-
-// export default AuthRoutes;
+export default function AuthRoutes() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Login className="biu" />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/*" element={<Login/>} />
+            </Routes>
+        </BrowserRouter>
+    );
+}

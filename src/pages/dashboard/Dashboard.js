@@ -126,17 +126,3 @@ const [numberPatients, setNumberPatients] = useState(0);
 };
 
 export default Dashboard;
-
-
-// const Dashboard = () => {
-
-//   return (
-//     <div className="container">
-
-//       <Main />
-      
-//     </div>
-//   );
-// }
-
-// export default Dashboard;

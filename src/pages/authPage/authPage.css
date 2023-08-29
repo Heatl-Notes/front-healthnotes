@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Nunito:wght@400;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Knewave&family=Nunito:wght@400;600;700&display=swap'); */
 
 * {
   margin: 0;
@@ -6,16 +6,16 @@
   box-sizing: border-box;
 }
 
-body, html {
+/* body, html {
   font-family: Nunito, sans-serif;
-}
+} */
 
 .container-auth {
   width: 100%;
   margin: 0 auto;
 }
 
-.container-login {
+.container-auth {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   width: 100%;
@@ -24,7 +24,7 @@ body, html {
 
 }
 
-.container-login-box {
+.container-auth-box {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -35,7 +35,7 @@ body, html {
   
 }
 
-.wrap-login {
+.wrap-auth {
   width: 390px;
   background-color: #333;
   border-radius: 10px;
@@ -44,7 +44,7 @@ body, html {
   box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-.login-img {
+.auth-img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,23 +52,23 @@ body, html {
   margin-top: -45px; /* Ajuste o valor conforme necessário */
 }
 
-.login-img > img {
+.auth-img > img {
   width: 180px;
   height: auto;
   max-width: 100%;
   border-radius: 10px;
 }
 
-.login-message {
+.auth-message {
   text-align: center;
   margin-top: 20px; /* Ajuste conforme necessário */
 }
 
-.login-form {
+.auth-form {
   width: 100%;
 }
 
-.login-form-title {
+.auth-form-title {
   font-family: Nunito, sans-serif;
   display: block;
   font-size: 30px;
@@ -77,7 +77,7 @@ body, html {
   text-align: center;
 }
 
-.login-form-title img {
+.auth-form-title img {
   width: 90px;
 }
 
@@ -170,14 +170,14 @@ body, html {
   width: 100%;
 }
 
-.container-login-form-btn {
+.container-auth-form-btn {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 13px;
 }
 
-.login-form-btn {
+.auth-form-btn {
   font-size: 15px;
   border: none;
   border-radius: 10px;
@@ -194,10 +194,6 @@ body, html {
   background: -o-linear-gradient(to left, #21d4fd, #b721ff);
   background: -moz-linear-gradient(to left, #21d4fd, #b721ff);
   background: linear-gradient(to left, #21d4fd, #b721ff);
-}
-
-.login-form-btn:hover {
-  cursor: pointer;
 }
 
 .text-center {
