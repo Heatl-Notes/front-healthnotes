@@ -1,12 +1,14 @@
 import React from 'react';
+
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import './sidebar.css';
 import logoHN from '../../assets/logoHN.jpg';
 
-const Sidebar = ({ sidebarOpen, closeSideBar }) => {
+const Sidebar = ({ sidebarOpen, closeSideBar, activeLink, setActiveLink }) => {
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.clear();
@@ -14,13 +16,17 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
     }
 
     const goToDashboard = () => {
-        // navigate('/');
-        <Link to="/"/>
+        navigate('/');
+        // <Link to="/"/>
     };
 
     const goToPatients = () => {
-        // navigate('/patients');
-        <Link to="/patients"/>
+        navigate('/patients');
+        // <Link to="/patients"/>
+    };
+
+    const handleLinkClick = (index) => {
+        setActiveLink(index);
     };
 
 
@@ -46,13 +52,19 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
             </div> */}
 
                 <h2>ADMIN</h2>
-                <div className="sidebar__link" onClick={goToDashboard}>
+                <div
+                    className={`sidebar__link ${activeLink === 0 ? 'active_menu_link' : ''}`}
+                    onClick={() => handleLinkClick(0)}
+                >
                     <i className="fas fa-tachometer-alt"></i>
-                    <a href="/">Dashboard</a>
+                    <Link to="/">Dashboard</Link>
                 </div>
-                <div className="sidebar__link" onClick={goToPatients}>
+                <div
+                    className={`sidebar__link ${activeLink === 1 ? 'active_menu_link' : ''}`}
+                    onClick={() => handleLinkClick(1)}
+                >
                     <i className="fas fa-users"></i>
-                    <a href="/patients">Pacientes</a>
+                    <Link to="/patients">Pacientes</Link>
                 </div>
                 {/* <div className="sidebar__link">
               <i className="fa fa-archive"></i>

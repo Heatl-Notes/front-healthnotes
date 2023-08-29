@@ -8,16 +8,16 @@ import './navbar.css';
 import avatar from '../../assets/avatar.jpg'
 
 
-const Navbar = ({ sidebarOpen, openSidebar }) => {
+const Navbar = ({ sidebarOpen, openSidebar, setActiveLink }) => {
     // const navigate = useNavigate();
     const caregiverId = localStorage.getItem('userCpf');
-    
+
     const [caregiverData, setCaregiverData] = useState({});
 
     const goToProfile = () => {
         // navigate('/profile');
         console.log("clicou");
-        <Link to="/profile"/>
+        <Link to="/profile" />
     };
 
     useEffect(() => {
@@ -28,6 +28,10 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
         getCaregiverData();
     }, []);
 
+    const handleProfileClick = () => {
+        setActiveLink(null);
+    }
+
     return (
         <nav className="navbar">
             <div className="nav_icon" onClick={() => openSidebar()}>
@@ -35,22 +39,21 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
             </div>
 
             <div className="navbar__left">
-                {/* <a href="#">Produtos</a>
-            <a href="#">Usuários</a>
-            <a href="#" className="active_link">Admin</a> */}
+                {/* <a href="#">Produtos</a> */}
+                {/* <a href="#">Usuários</a> */}
+                {/* <a href="#" className="active_link">Admin</a> */}
             </div>
 
             <div className="navbar__right" >
-                
-                <div className="navbar__right__profile">
+
+                <div className="navbar__right__profile" onClick={handleProfileClick}>
                     <Link className="oi" to="/profile">
                         <p>{caregiverData.name} {caregiverData.lastname}</p>
-                    {/* </Link> */}
-                    {/* <Link className="oi" to="/profile"> */}
+                        {/* </Link> */}
+                        {/* <Link className="oi" to="/profile"> */}
                         <img className="profile_image" src={avatar} alt="avatar" />
                     </Link>
                 </div>
-
 
             </div>
         </nav>

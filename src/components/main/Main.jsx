@@ -16,12 +16,15 @@ const Main = () => {
     const openSidebar = () => { setSidebarOpen(true); };
     const closeSideBar = () => { setSidebarOpen(false); };
 
+    const [activeLink, setActiveLink] = useState(0);
+
+
     return (
         <div className="container">
             <BrowserRouter>
 
-                <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-                <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} />
+                <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} setActiveLink={setActiveLink} />
+                <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} activeLink={activeLink} setActiveLink={setActiveLink} />
                 <main>
                     <Rotas />
                 </main>
