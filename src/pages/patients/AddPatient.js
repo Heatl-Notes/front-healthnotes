@@ -1,11 +1,9 @@
 import React from 'react';
 
 import { useState } from 'react';
-import { apiUrl } from '../../utils/config';
+import { fetchAddPatient } from '../../services/api';
 
 import './Patients.css';
-
-
 
 const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
 
@@ -15,57 +13,41 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
         age: '',
         comorbidities: '',
         complexProcedures: '',
-      });
-    
-      const handleInputChange = (event) => {
+    });
+
+    const handleInputChange = (event) => {
         const { name, value } = event.target;
         setNewPatient({
-          ...newPatient,
-          [name]: value,
+            ...newPatient,
+            [name]: value,
         });
-      };
-    
-      const handleSubmit = async (event) => {
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-    
-        try {
-          const response = await fetch(`${apiUrl}/patient`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem("token"),
-            },
-            body: JSON.stringify(newPatient),
-          });
-    
-          if (response.ok) {
+
+        const response = await fetchAddPatient(newPatient);
+        if (response.ok) {
             console.log('Paciente adicionado com sucesso!');
             updatePatientsList();
             toggleAddPatientButton();
-          } else {
+        } else {
             console.error('Erro ao adicionar paciente');
-          }
-        } catch (error) {
-          console.error('Erro ao adicionar paciente:', error);
         }
-      };
+    };
 
-      const handleCancel = () => {
+    const handleCancel = () => {
         // Limpa os campos do formulário e fecha o formulário
         setNewPatient({
-          name: '',
-          cpf: '',
-          age: '',
-          comorbidities: '',
-          complexProcedures: '',
+            name: '',
+            cpf: '',
+            age: '',
+            comorbidities: '',
+            complexProcedures: '',
         });
-    
-        toggleAddPatientButton();
-      };
 
-    //   useEffect(() => {
-    //     console.log(newPatient);
-    // }, [newPatient]);
+        toggleAddPatientButton();
+    };
 
     return (
         <div className="add-patient-form-container">
@@ -76,23 +58,23 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
                     <button className="close-button" onClick={handleCancel}>X</button>
                     <div className="form-group">
                         <label htmlFor="newName">Nome:</label>
-                        <input type="text" id="newName" name="name" placeholder="Nome do paciente" value={newPatient.newName} onChange={handleInputChange}/>
+                        <input type="text" id="newName" name="name" placeholder="Nome do paciente" value={newPatient.newName} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="newCpf">CPF:</label>
-                        <input type="text" id="newCpf" name="cpf" placeholder="CPF do paciente" value={newPatient.newCpf} onChange={handleInputChange}/>
+                        <input type="text" id="newCpf" name="cpf" placeholder="CPF do paciente" value={newPatient.newCpf} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="newIdade">Idade:</label>
-                        <input type="text" id="newIdade" name="age" placeholder="Idade do paciente" value={newPatient.newIdade} onChange={handleInputChange}/>
+                        <input type="text" id="newIdade" name="age" placeholder="Idade do paciente" value={newPatient.newIdade} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="newComorbidades">Comorbidades:</label>
-                        <input type="text" id="newComorbidades" name="comorbidities" placeholder="Comorbidades do paciente" value={newPatient.newComorbidades} onChange={handleInputChange}/>
+                        <input type="text" id="newComorbidades" name="comorbidities" placeholder="Comorbidades do paciente" value={newPatient.newComorbidades} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="newProcedimentos">Procedimentos:</label>
-                        <input type="text" id="newProcedimentos" name="complexProcedures" placeholder="Procedimentos do paciente" value={newPatient.newProcedimentos} onChange={handleInputChange}/>
+                        <input type="text" id="newProcedimentos" name="complexProcedures" placeholder="Procedimentos do paciente" value={newPatient.newProcedimentos} onChange={handleInputChange} />
                     </div>
                     <button className="submit-button" type="submit">Adicionar Paciente</button>
                 </form>

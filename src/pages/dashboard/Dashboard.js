@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { apiUrl } from '../../utils/config';
+import { fetchCaregiverById, fetchNumberPatients } from '../../services/api';
 
 import hello from '../../assets/hello.jpg';
 
@@ -10,44 +10,10 @@ import './Dashboard.css';
 
 const Dashboard = () => {
 
-  const [numberPatients, setNumberPatients] = useState(0);
-  const [caregiverData, setCaregiverData] = useState({});
+const [numberPatients, setNumberPatients] = useState(0);
+    const [caregiverData, setCaregiverData] = useState({});
 
   const caregiverId = localStorage.getItem('userCpf');
-
-  const fetchCaregiverById = async (caregiverId) => {
-    try {
-        const response = await fetch(`${apiUrl}/caregiver/${caregiverId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
-            },
-        });
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching caregiver:', error);
-        return [];
-    }
-  }
-
-  const fetchNumberPatients = async (caregiverId) => {
-    try {
-        const response = await fetch(`${apiUrl}/caregiver/${caregiverId}/number-patients`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token'),
-            },
-        });
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching number patients:', error);
-        return [];
-    }
-  }
 
 
   useEffect(() => {

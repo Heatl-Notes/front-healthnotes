@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Sidebar from '../sidebar/Sidebar';
 import Navbar from '../navbar/Navbar';
 
-import './Main.css';
+import './main.css';
 
 
 const Main = ( {children} ) => {

@@ -1,58 +1,58 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './Sidebar.css';
+import './sidebar.css';
 import logoHN from '../../assets/logoHN.jpg';
 
 const Sidebar = ({ sidebarOpen, closeSideBar }) => {
-  
-  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate('/login');
-  }
+    const navigate = useNavigate();
 
-  const goToDashboard = () => {
-    navigate('/dashboard');
-  };
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login');
+    }
 
-  const goToPatients = () => {
-    navigate('/patients');
-  };
+    const goToDashboard = () => {
+        navigate('/dashboard');
+    };
+
+    const goToPatients = () => {
+        navigate('/patients');
+    };
 
 
     return (
         <div className={sidebarOpen ? "sidebar-responsive" : ""} id="sidebar">
-          <div className="sidebar__title">
-            <div className="sidebar__img">
-              <img src={logoHN} alt="logo" />
-              <h1>Health Notes</h1>
-            </div>
+            <div className="sidebar__title">
+                <div className="sidebar__img">
+                    <img src={logoHN} alt="logo" />
+                    <h1>Health Notes</h1>
+                </div>
 
-            <i 
-            onClick={() => closeSideBar()}
-            className="fa fa-times"
-            id="sidebarIcon"
-            aria-hidden="true"
-            ></i>
-          </div>
-          <div className="sidebar__menu">
-            {/* <div className="sidebar__link active_menu_link">
+                <i
+                    onClick={() => closeSideBar()}
+                    className="fa fa-times"
+                    id="sidebarIcon"
+                    aria-hidden="true"
+                ></i>
+            </div>
+            <div className="sidebar__menu">
+                {/* <div className="sidebar__link active_menu_link">
               <i className="fa fa-minus-square"></i>
               <a href="#">Dashboard</a>
             </div> */}
 
-            <h2>ADMIN</h2>
-            <div className="sidebar__link" onClick={goToDashboard}>
-              <i className="fas fa-tachometer-alt"></i>
-              <a href="/dashboard">Dashboard</a>
-            </div>
-            <div className="sidebar__link" onClick={goToPatients}>
-              <i className="fas fa-users"></i>
-              <a href="/patients">Pacientes</a>
-            </div>
-            {/* <div className="sidebar__link">
+                <h2>ADMIN</h2>
+                <div className="sidebar__link" onClick={goToDashboard}>
+                    <i className="fas fa-tachometer-alt"></i>
+                    <a href="/dashboard">Dashboard</a>
+                </div>
+                <div className="sidebar__link" onClick={goToPatients}>
+                    <i className="fas fa-users"></i>
+                    <a href="/patients">Pacientes</a>
+                </div>
+                {/* <div className="sidebar__link">
               <i className="fa fa-archive"></i>
               <a href="#">Produtos</a>
             </div>
@@ -86,11 +86,11 @@ const Sidebar = ({ sidebarOpen, closeSideBar }) => {
               <i className="fa fa-file-text"></i>
               <a href="#">Política de privacidade</a>
             </div> */}
-            <div className="sidebar__logout" onClick={handleLogout}>
-              <i className="fas fa-sign-out-alt"></i>
-              <a href="/">Log out</a>
+                <div className="sidebar__logout" onClick={handleLogout}>
+                    <i className="fas fa-sign-out-alt"></i>
+                    <a href="/">Log out</a>
+                </div>
             </div>
-          </div>
 
         </div>
     )

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Patients.css';
 
-const PatientsCards = ({ patients }) => {
+const PatientsCards = ({ patientsList }) => {
     const navigate = useNavigate();
 
     const handleCardClick = (patientId) => {
@@ -13,7 +13,7 @@ const PatientsCards = ({ patients }) => {
 
     return (
         <div className="patients__cards">
-            {patients.map(patient => (
+            {patientsList.map(patient => (
                 <div className="patient_card" key={patient.cpf} onClick={() => handleCardClick(patient.cpf)}>
                 <div className="card_image">
                         <img className="patient_image" alt={`Foto do paciente ${patient.name}`} src={patient.profilePhoto}></img>

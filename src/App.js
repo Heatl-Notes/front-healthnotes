@@ -3,9 +3,9 @@ import Rotas from './utils/rotas';
 import './App.css';
 
 const App = () => {
-  return (
-    <Rotas />
-  );
+    return (
+        <Rotas />
+    );
 }
 
 export default App;

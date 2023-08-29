@@ -16,13 +16,13 @@ const PrivateRoute = ({ filho }) => {
     //     };
     //     getAuthenticated();
     // }, []);
-    
+
     return authenticated ? filho : (<Navigate to="/" />);
 };
 
 export default PrivateRoute;
 
-        {/* <Route 
+{/* <Route 
           path="/main" 
           element={
             <PrivateRoute>

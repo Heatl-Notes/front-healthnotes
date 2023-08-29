@@ -15,37 +15,37 @@ import PatientProfile from '../pages/patientProfile/PatientProfile';
 import Profile from '../pages/profile/Profile';
 
 export default function Rotas() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login className="biu"/>}/>
-        <Route path="/register" element={<Register />} />
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Login className="biu" />} />
+                <Route path="/register" element={<Register />} />
 
-        <Route path="/dashboard" element={<Main><Dashboard /></Main>} />
-        <Route path="/patients" element={<Main><Patients /></Main>} />
-        <Route path="/patient/:patientId" element={<Main><PatientProfile /></Main>} />
-        <Route path="/profile" element={<Main><Profile /></Main>} />
+                <Route path="/dashboard" element={<Main><Dashboard /></Main>} />
+                <Route path="/patients" element={<Main><Patients /></Main>} />
+                <Route path="/patient/:patientId" element={<Main><PatientProfile /></Main>} />
+                <Route path="/profile" element={<Main><Profile /></Main>} />
 
 
-        {/* <Route path="/dashboard" element={<Dashboard />} />
+                {/* <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patients" element={<Patients />} />
         <Route path="/patient/:patientId" element={<PatientProfile />} />
         <Route path="/profile" element={<Profile />} /> */}
 
 
-        {/* <Route path="/home" element={<Home />} /> */}
+                {/* <Route path="/home" element={<Home />} /> */}
 
 
 
 
-        {/* <Route path="/dashboard" element={<Dashboard />} />
+                {/* <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/patients" element={<Patients />} />
         <Route path="/patient/:patientId" element={<PatientProfile />} />
         <Route path="/profile" element={<Profile />} /> */}
 
 
 
-      </Routes>
-    </BrowserRouter>
-  );
+            </Routes>
+        </BrowserRouter>
+    );
 }

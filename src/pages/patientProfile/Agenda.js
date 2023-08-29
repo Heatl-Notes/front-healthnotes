@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 
 
 import { useState, useEffect } from 'react';
-import { apiUrl } from '../../utils/config';
+import { fetchCaregiverById, fetchPatientEventsByDate, fetchPatientAddEvent } from '../../services/api';
 
 
 
@@ -23,7 +23,7 @@ const Agenda = ({ patientId }) => {
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
         const currentDate = `${year}-${month}-${day}`;
-        
+
         updateEventsByDate(currentDate);
     };
 
@@ -33,7 +33,7 @@ const Agenda = ({ patientId }) => {
 
     const updateEventsByDate = async (date) => {
         setSelectedDate(date);
-        const eventData = await fetchEventsByDate(date);
+        const eventData = await fetchPatientEventsByDate(patientId, date);
         setEvents(eventData);
 
         const newCaregiverNames = await getCaregiverNamesForEvents(eventData);
@@ -42,52 +42,17 @@ const Agenda = ({ patientId }) => {
 
     const getCaregiverNamesForEvents = async (events) => {
         const namesMap = {};
-        
+
         const caregiverIds = events.map(event => event.caregiverId);
         const uniqueCaregiverIds = [...new Set(caregiverIds)]; // Remove IDs duplicados
-        
+
         await Promise.all(uniqueCaregiverIds.map(async (id) => {
-            const name = await fetchCaregiverNameById(id);
-            namesMap[id] = name;
+            const caregiver = await fetchCaregiverById(id);
+            namesMap[id] = caregiver.name;
         }));
-        
+
         return namesMap;
     };
-
-    const fetchEventsByDate = async (date) => {
-        try {
-            const response = await fetch(`${apiUrl}/patient/${patientId}/calendar/${date}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token'),
-                },
-            });
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching events:', error);
-            return [];
-        }
-    };
-
-    const fetchCaregiverNameById = async (caregiverId) => {
-        try {
-            const response = await fetch(`${apiUrl}/caregiver/${caregiverId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token'),
-                },
-            });
-            const data = await response.json();
-            return data.name;
-        } catch (error) {
-            console.error('Error fetching caregiver name:', error);
-            return [];
-        }
-    }
-
 
     useEffect(() => {
         selectCurrentDate();
@@ -95,8 +60,8 @@ const Agenda = ({ patientId }) => {
 
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const openAddEventModal = () => {setIsModalOpen(true);};
-    const closeAddEventModal = () => {setIsModalOpen(false);};
+    const openAddEventModal = () => { setIsModalOpen(true); };
+    const closeAddEventModal = () => { setIsModalOpen(false); };
 
     const [newEvent, setnewEvent] = useState({
         date: '',
@@ -109,33 +74,19 @@ const Agenda = ({ patientId }) => {
         setnewEvent((prevData) => ({
             ...prevData,
             [name]: value,
+            date: selectedDate
         }));
     };
 
-    const addEvent = async (event) => {
+    const handleAddEvent = async (event) => {
         event.preventDefault();
 
-        try {
-            const response = await fetch(`${apiUrl}/patient/${patientId}/add-schedule`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token'),
-                },
-                body: JSON.stringify({
-                    ...newEvent,
-                    date: selectedDate
-                })
-            });
-
-            if (response.ok) {
-                updateEventsByDate(selectedDate);
-                closeAddEventModal();
-            } else {
-                console.error('Erro ao adicionar evento');
-            }
-        } catch (error) {
-            console.error('Erro na solicitação POST:', error);
+        const response = await fetchPatientAddEvent(patientId, newEvent);
+        if (response.ok) {
+            updateEventsByDate(selectedDate);
+            closeAddEventModal();
+        } else {
+            console.error('Erro ao adicionar evento');
         }
     };
 
@@ -173,14 +124,14 @@ const Agenda = ({ patientId }) => {
                             <p className="event__caretaker">{caregiverNames[event.caregiverId]}</p>
                         </div>
                     ))}
-                    
+
                 </div>
             </div>
 
             <div className="agenda__add__event">
                 <button className="agenda__add__event-button" onClick={() => openAddEventModal()}>Adicionar Evento</button>
             </div>
-            
+
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={closeAddEventModal}
@@ -189,7 +140,7 @@ const Agenda = ({ patientId }) => {
                 appElement={document.getElementById('root')}
             >
                 <h2>Adicionar Evento</h2>
-                <form onSubmit={addEvent}>
+                <form onSubmit={handleAddEvent}>
                     <label htmlFor="time">Horário:</label>
                     <input type="time" id="time" name="time" onChange={handleInputChange} />
 

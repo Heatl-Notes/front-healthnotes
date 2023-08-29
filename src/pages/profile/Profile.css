@@ -1,9 +1,3 @@
-main {
-    background: #f3f4f6;
-    grid-area: main;
-    overflow-y: auto;
-}
-
 .profile__container {
     padding: 20px 35px;
 }
