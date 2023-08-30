@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { fetchPatientChecklistItems, fetchPatientDeleteChecklistItem, fetchPatientAddChecklistItem } from '../../services/api';
+import { fetchPatientChecklistItems, fetchPatientDeleteChecklistItem, fetchPatientAddChecklistItem, fetchPatientUpdateChecklistItem } from '../../services/api';
 
 
 import './PatientProfile.css';
@@ -10,12 +10,13 @@ import './PatientProfile.css';
 const Checklist = ({ patientId }) => {
 
     const [checklistItems, setChecklistItems] = useState([]);
-    const handleCheckboxChange = (itemId) => {
-        setChecklistItems((prevItems) =>
-            prevItems.map((item) =>
-                item.id === itemId ? { ...item, marked: !item.marked } : item
-            )
-        );
+    const handleCheckboxChange = async (itemId) => {
+        const response = await fetchPatientUpdateChecklistItem(patientId, itemId);
+        if (response.ok) {
+            updatechecklistItems();
+        } else {
+            console.error('Erro ao remover checklistItem');
+        }
     };
 
     const updatechecklistItems = async () => {

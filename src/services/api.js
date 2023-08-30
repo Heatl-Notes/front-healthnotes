@@ -1,5 +1,5 @@
-// const apiUrl = 'http://localhost:8080';
-const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
+const apiUrl = 'http://localhost:8080';
+// const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
 export const isAuthenticated = false;
 
 // FUNÇÕES DE AUTH
@@ -51,6 +51,7 @@ export const fetchCaregiverById = async (caregiverId) => {
         return data;
     } catch (error) {
         console.error('Error fetching caregiver:', error);
+        localStorage.clear();
         return [];
     }
 }
@@ -88,6 +89,23 @@ export const fetchNumberPatients = async (caregiverId) => {
     }
 }
 
+export const fetchRendaMensal = async (caregiverId) => {
+    try {
+        const response = await fetch(`${apiUrl}/caregiver/${caregiverId}/monthly-cost`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching number patients:', error);
+        return [];
+    }
+}
+
 
 // FUNÇÕES DA API DO PATIENT
 
@@ -102,13 +120,6 @@ export const fetchAddPatient = async (newPatient) => {
             body: JSON.stringify(newPatient),
         });
         return response;
-        // if (response.ok) {
-        //     console.log('Paciente adicionado com sucesso!');
-        //     updatePatientsList();
-        //     toggleAddPatientButton();
-        // } else {
-        //     console.error('Erro ao adicionar paciente');
-        // }
     } catch (error) {
         console.error('Erro ao adicionar paciente:', error);
     }
@@ -195,6 +206,21 @@ export const fetchPatientAddChecklistItem = async (patientId, newChecklistItem) 
         return response;
     } catch (error) {
         console.error('Erro na solicitação POST para add nova checklist:', error);
+    }
+};
+
+export const fetchPatientUpdateChecklistItem = async (patientId, itemId) => {
+    try {
+        const response = await fetch(`${apiUrl}/patient/${patientId}/checklist/${itemId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        return response;
+    } catch (error) {
+        console.error('Erro na solicitação POST para remover checklistItem:', error);
     }
 };
 

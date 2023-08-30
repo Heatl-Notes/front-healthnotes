@@ -15,6 +15,10 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
         complexProcedures: '',
     });
 
+    const [newCaregiverPatientInfo, setNewCaregiverPatientInfo] = useState({
+        monthlyCost: 0,
+    });
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setNewPatient({
@@ -23,10 +27,21 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
         });
     };
 
+    const handleInputChange2 = (event) => {
+        const { name, value } = event.target;
+        setNewCaregiverPatientInfo({
+            ...newCaregiverPatientInfo,
+            [name]: value,
+        });
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetchAddPatient(newPatient);
+        const response = await fetchAddPatient({
+            patientDTO: newPatient, 
+            atendimentoDTO: newCaregiverPatientInfo
+        });
         if (response.ok) {
             console.log('Paciente adicionado com sucesso!');
             updatePatientsList();
@@ -76,6 +91,14 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
                         <label htmlFor="newProcedimentos">Procedimentos:</label>
                         <input type="text" id="newProcedimentos" name="complexProcedures" placeholder="Procedimentos do paciente" value={newPatient.newProcedimentos} onChange={handleInputChange} />
                     </div>
+
+
+                    <div className="form-group">
+                        <label htmlFor="newProcedimentos">Custo Mensal:</label>
+                        <input type="text" id="newCustoMensal" name="monthlyCost" placeholder="Custo mensal" value={newCaregiverPatientInfo.custoMensal} onChange={handleInputChange2} />
+                    </div>
+
+
                     <button className="submit-button" type="submit">Adicionar Paciente</button>
                 </form>
             </div>
