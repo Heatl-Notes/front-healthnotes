@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { useState } from 'react';
 import { fetchAddPatient } from '../../services/api';
 
 import './Patients.css';
@@ -15,9 +14,20 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
         complexProcedures: '',
     });
 
+    const getDayOfWeek = (index) => {
+        const daysOfWeek = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+        return daysOfWeek[index];
+    };
     const [newCaregiverPatientInfo, setNewCaregiverPatientInfo] = useState({
         monthlyCost: 0,
+        listHorarios: Array.from({ length: 7 }, (_, index) => ({
+            dayOfWeek: getDayOfWeek(index), // Função para obter o dia da semana com base no índice
+            startTime: null,
+            endTime: null
+        })),
     });
+    
+    // Função para obter o nome do dia da semana com base no índice
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -39,7 +49,7 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
         event.preventDefault();
 
         const response = await fetchAddPatient({
-            patientDTO: newPatient, 
+            patientDTO: newPatient,
             atendimentoDTO: newCaregiverPatientInfo
         });
         if (response.ok) {
@@ -63,6 +73,27 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
 
         toggleAddPatientButton();
     };
+
+    const handleHorarioChange = (event, dayOfWeek, timeType) => {
+        const { value } = event.target;
+        const updatedHorarios = newCaregiverPatientInfo.listHorarios.map((horario) => {
+            if (horario.dayOfWeek === dayOfWeek) {
+                return {
+                    ...horario,
+                    [timeType]: value,
+                };
+            }
+            return horario;
+        });
+        setNewCaregiverPatientInfo({
+            ...newCaregiverPatientInfo,
+            listHorarios: updatedHorarios,
+        });
+    };
+
+    useEffect(() => {
+        console.log(newCaregiverPatientInfo)
+    }, [newCaregiverPatientInfo]);
 
     return (
         <div className="add-patient-form-container">
@@ -98,6 +129,23 @@ const AddPatient = ({ toggleAddPatientButton, updatePatientsList }) => {
                         <input type="text" id="newCustoMensal" name="monthlyCost" placeholder="Custo mensal" value={newCaregiverPatientInfo.custoMensal} onChange={handleInputChange2} />
                     </div>
 
+                    {['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'].map((dayOfWeek) => (
+                        <div className="form-group" key={dayOfWeek}>
+                            <label htmlFor={`start-time-${dayOfWeek}`}>Horário de atendimento na {dayOfWeek}</label>
+                            <input
+                                type="time"
+                                id={`start-time-${dayOfWeek}`}
+                                name={`startTime-${dayOfWeek}`}
+                                onChange={(e) => handleHorarioChange(e, dayOfWeek, 'startTime')}
+                            />
+                            <input
+                                type="time"
+                                id={`end-time-${dayOfWeek}`}
+                                name={`endTime-${dayOfWeek}`}
+                                onChange={(e) => handleHorarioChange(e, dayOfWeek, 'endTime')}
+                            />
+                        </div>
+                    ))}
 
                     <button className="submit-button" type="submit">Adicionar Paciente</button>
                 </form>
