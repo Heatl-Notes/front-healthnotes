@@ -1,5 +1,5 @@
-// const apiUrl = 'http://localhost:8080';
-const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
+const apiUrl = 'http://localhost:8080';
+// const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
 export const isAuthenticated = false;
 
 // FUNÇÕES DE AUTH
@@ -56,6 +56,25 @@ export const fetchCaregiverById = async (caregiverId) => {
     }
 }
 
+export const fetchUpdateCaregiver = async (caregiverId, caregiverUpdated) => {
+    try {
+        const response = await fetch(`${apiUrl}/caregiver/${caregiverId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+            body: JSON.stringify(caregiverUpdated),
+        });
+        // const data = await response.json();
+        // return data;
+        return response;
+    } catch (error) {
+        console.error('Error update caregiver:', error);
+        return [];
+    }
+}
+
 export const fetchPatients = async () => {
     try {
         const response = await fetch(`${apiUrl}/patient`, {
@@ -106,12 +125,29 @@ export const fetchRendaMensal = async (caregiverId) => {
     }
 }
 
+export const fetchAppointmentsForDay = async (caregiverId, dayName) => {
+    try {
+        const response = await fetch(`${apiUrl}/caregiver/${caregiverId}/appointments?dayName=${dayName}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching number patients:', error);
+        return [];
+    }
+}
+
 
 // FUNÇÕES DA API DO PATIENT
 
-export const fetchAddPatient = async (newPatient) => {
+export const fetchAddPatient = async (caregiverId, newPatient) => {
     try {
-        const response = await fetch(`${apiUrl}/patient`, {
+        const response = await fetch(`${apiUrl}/caregiver/${caregiverId}/patient`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { fetchCaregiverById } from '../../services/api';
+import { fetchCaregiverById, fetchUpdateCaregiver } from '../../services/api';
 
 import hello from '../../assets/hello.jpg';
 
@@ -13,16 +13,43 @@ const Profile = () => {
     const sairModoEdicao = () => { setModoEdicao(false); };
     const abrirModoEdicao = () => { setModoEdicao(true); };
 
-    const [caregiver, setcaregiver] = useState({});
     const caregiverId = localStorage.getItem('userCpf');
+    const [caregiver, setCaregiver] = useState({});
+
+    const getcaregiver = async () => {
+        const caregiverAux = await fetchCaregiverById(caregiverId);
+        setCaregiver(caregiverAux);
+    };
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setCaregiver({
+            ...caregiver,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async () => {
+        const response = await fetchUpdateCaregiver(caregiverId, {
+            name: caregiver.name,
+            lastname: caregiver.lastname,
+            email: caregiver.email
+        });
+        if (response.ok) {
+            console.log('Cuidador atualizado com sucesso!');
+        } else {
+            console.error('Erro ao atualizar cuidador');
+        }
+    };
 
     useEffect(() => {
-        const getcaregiver = async () => {
-            const caregiverAux = await fetchCaregiverById(caregiverId);
-            setcaregiver(caregiverAux);
-        };
         getcaregiver();
     }, []);
+
+    useEffect(() => {
+        console.log(caregiver)
+    }, [caregiver]);
+
 
 
     return (
@@ -39,26 +66,22 @@ const Profile = () => {
                     <button className="profile__card__edit__link" onClick={sairModoEdicao}>Cancelar</button>
                     <img src={hello} alt="hello" />
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
 
                         <div className="form-group">
                             <label htmlFor="email">Nome: </label>
-                            <input type="email" id="email" name="email" defaultValue={caregiver.name} />
+                            <input type="text" id="name" name="name" defaultValue={caregiver.name} onChange={handleInputChange} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Sobrenome: </label>
-                            <input type="email" id="email" name="email" defaultValue={caregiver.lastname} />
+                            <input type="text" id="lastname" name="lastname" defaultValue={caregiver.lastname} onChange={handleInputChange} />
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="email">Email: </label>
-                            <input type="email" id="email" name="email" defaultValue={caregiver.email} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Cpf:   </label>
-                            <input type="text" id="cpf" name="cpf" defaultValue={caregiver.cpf} />
-                        </div>
+                            <input type="text" id="email" name="email" defaultValue={caregiver.email} onChange={handleInputChange} />
+                        </div> */}
 
-                        <button className="edit-button">Salvar</button>
+                        <button className="edit-button" type='submit'>Salvar</button>
 
                     </form>
                 </div>

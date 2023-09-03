@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { useState, useEffect } from 'react';
-import { fetchCaregiverById, fetchNumberPatients, fetchRendaMensal } from '../../services/api';
+import { fetchCaregiverById, fetchNumberPatients, fetchRendaMensal, fetchAppointmentsForDay } from '../../services/api';
 
 import hello from '../../assets/hello.jpg';
 
 import './Dashboard.css';
 
+const daysOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
 const Dashboard = () => {
 
@@ -31,14 +32,29 @@ const Dashboard = () => {
 
     const formatNumberWithComma = (number) => {
         return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-      }
+    };
+
+
+    const currentDate = new Date();
+    const currentDayName = daysOfWeek[currentDate.getDay()];
+    const [todayName, setTodayName] = useState(currentDayName);
+    const [appointmentsForDay, setAppointmentsForDay] = useState([{}]);
+    console.log(appointmentsForDay)
+    const getAppointmentsForDay = async (dayName) => {
+        // console.log(dayName)
+        const appointmentsForDayAux = await fetchAppointmentsForDay(caregiverId, dayName);
+        // console.log(appointmentsForDayAux)
+        setAppointmentsForDay(appointmentsForDayAux);
+    };
+
 
     useEffect(() => {
-
-
         getCaregiverData();
         getnumberPatients();
         getRendaMensal();
+
+
+        getAppointmentsForDay(todayName);
     }, []);
 
 
@@ -63,14 +79,6 @@ const Dashboard = () => {
                 </div>
 
                 <div className="card-dashboard">
-                    <i className="fa fa-list-ol fa-2x text-yellow"></i>
-                    <div className="card_inner">
-                        <p className="text-primary-p">Atendimentos do dia</p>
-                        <span className="font-bold text-title">4</span>
-                    </div>
-                </div>
-
-                <div className="card-dashboard">
                     <i className="fas fa-hand-holding-usd fa-2x text-green"></i>
                     <div className="card_inner">
                         <p className="text-primary-p">Renda Mensal</p>
@@ -79,12 +87,20 @@ const Dashboard = () => {
                 </div>
 
                 <div className="card-dashboard">
+                    <i className="fa fa-list-ol fa-2x text-yellow"></i>
+                    <div className="card_inner">
+                        <p className="text-primary-p">Atendimentos do dia</p>
+                        <span className="font-bold text-title">{appointmentsForDay.length}</span>
+                    </div>
+                </div>
+
+                {/* <div className="card-dashboard">
                     <i className="fa fa-hospital fa-2x text-red"></i>
                     <div className="card_inner">
                         <p className="text-primary-p">Categorias</p>
                         <span className="font-bold text-title">40</span>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="charts">
@@ -104,31 +120,18 @@ const Dashboard = () => {
                     <div className="charts__right__title">
                         <div>
                             <h1>Horários de Atendimento</h1>
-                            <p>Funcionalidade nova! (AINDA NÃO IMPLEMENTADA)</p>
+                            {/* <p>Funcionalidade nova! (AINDA NÃO IMPLEMENTADA)</p> */}
                         </div>
                     </div>
 
                     <div className="charts__right__cars">
-
-                        <div className="card1">
-                            <h1>João</h1>
-                            <p>8~10h</p>
-                        </div>
-
-                        <div className="card2">
-                            <h1>Pedro</h1>
-                            <p>10-12h</p>
-                        </div>
-
-                        <div className="card3">
-                            <h1>Maria</h1>
-                            <p>14-16h</p>
-                        </div>
-
-                        <div className="card4">
-                            <h1>Laura</h1>
-                            <p>16-18h</p>
-                        </div>
+                        {appointmentsForDay.map(appointment => (
+                            <div className="card3" key={String(appointment.id)}>
+                                <h1>{appointment.patientName}</h1>
+                                <p>{appointment.startTime} até às {appointment.endTime}</p>
+                            </div>
+                        ))}
+ 
                     </div>
                 </div>
             </div>

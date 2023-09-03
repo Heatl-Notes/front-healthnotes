@@ -15,7 +15,7 @@ const PatientsCards = ({ patientsList }) => {
         <div className="patients__cards">
             {patientsList.map(patient => (
                 <div className="patient_card" key={patient.cpf} onClick={() => handleCardClick(patient.cpf)}>
-                <div className="card_image">
+                    <div className="card_image">
                         <img className="patient_image" alt={`Foto do paciente ${patient.name}`} src={patient.profilePhoto}></img>
                         {/* <img className="patient_image" src={patient.image} alt={`Imagem de ${patient.nome}`} /> */}
                     </div>

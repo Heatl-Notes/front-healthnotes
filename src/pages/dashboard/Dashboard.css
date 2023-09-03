@@ -27,7 +27,7 @@
 
 .main__cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin: 20px 0;
 }
@@ -138,41 +138,17 @@
   margin-top: 30px;
 }
 
-.card1 {
-  background: #d1ecf1;
-  color: #35a4ba;
-  text-align: center;
-  padding: 25px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.card2{
-  background: #d2f9ee;
-  color: #38e1b0;
-  text-align: center;
-  padding: 25px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
 .card3 {
   background: #d6d8d9;
   color: #3a3e41;
   text-align: center;
-  padding: 25px;
+  padding: 15px;
   border-radius: 5px;
   font-size: 14px;
+  border: 0.5px solid #aaaaaa;
 }
 
-.card4{
-  background: #fddcdf;
-  color: #f65a6f;
-  text-align: center;
-  padding: 25px;
-  border-radius: 5px;
-  font-size: 14px;
-}
+
 
 
 @media only screen and (max-width: 855px) {
