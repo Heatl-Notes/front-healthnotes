@@ -25,18 +25,18 @@ const PatientProfile = () => {
 
     return (
 
-        <div className="main__container">
+        <div className="patientProfile__container">
 
-            <div className="main__title">
+            <div className="patientProfile__title">
 
                 <img className="patient_image" alt={`Foto do paciente ${patientData.name}`} src={patientData.profilePhoto}></img>
-                <div className="main_greeting">
+                <div className="patientProfile_greeting">
                     <h1>{patientData.name}</h1>
                 </div>
 
             </div>
 
-            <Patient patientData={patientData} />
+            <Patient patientData={patientData} setPatientData={setPatientData}/>
 
             <div className="charts">
                 <Agenda patientId={patientId} />

@@ -1,5 +1,5 @@
-const apiUrl = 'http://localhost:8080';
-// const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
+// const apiUrl = 'http://localhost:8080';
+const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
 export const isAuthenticated = false;
 
 // FUNÇÕES DE AUTH
@@ -177,6 +177,27 @@ export const fetchPatientById = async (patientId) => {
         return [];
     }
 };
+
+export const fetchUpdatePatient = async (patientDTO) => {
+    try {
+        const response = await fetch(`${apiUrl}/patient`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+            body: JSON.stringify(patientDTO)
+
+        });
+        // const data = await response.json();
+        // return data;
+        return response;
+    } catch (error) {
+        console.error('Error update patient:', error);
+        return [];
+    }
+};
+
 
 export const fetchPatientEventsByDate = async (patientId, date) => {
     try {

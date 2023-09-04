@@ -6,6 +6,7 @@ import { fetchCaregiverById, fetchNumberPatients, fetchRendaMensal, fetchAppoint
 import hello from '../../assets/hello.jpg';
 
 import './Dashboard.css';
+import { Link } from 'react-router-dom';
 
 const daysOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
@@ -39,7 +40,6 @@ const Dashboard = () => {
     const currentDayName = daysOfWeek[currentDate.getDay()];
     const [todayName, setTodayName] = useState(currentDayName);
     const [appointmentsForDay, setAppointmentsForDay] = useState([{}]);
-    console.log(appointmentsForDay)
     const getAppointmentsForDay = async (dayName) => {
         // console.log(dayName)
         const appointmentsForDayAux = await fetchAppointmentsForDay(caregiverId, dayName);
@@ -127,7 +127,7 @@ const Dashboard = () => {
                     <div className="charts__right__cars">
                         {appointmentsForDay.map(appointment => (
                             <div className="card3" key={String(appointment.id)}>
-                                <h1>{appointment.patientName}</h1>
+                                <Link to={`/patient/${appointment.patientCpf}`}><h1>{appointment.patientName}</h1></Link>
                                 <p>{appointment.startTime} até às {appointment.endTime}</p>
                             </div>
                         ))}
