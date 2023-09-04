@@ -1,30 +1,29 @@
-import { useState } from 'react';
+import React from 'react';
 
-import Sidebar from './components/sidebar/Sidebar';
-import Navbar from './components/navbar/Navbar';
+import AuthPage from './pages/authPage/AuthPage';
+import { isAuthenticated } from './utils/auth';
+
+import { useState, useEffect } from 'react';
+import MyContext from './contexts/myContext'
+
 import Main from './components/main/Main';
-
 
 import './App.css';
 
-
 const App = () => {
+    const [authenticated, setAuthenticated] = useState(isAuthenticated());
 
-const [sidebarOpen, setSidebarOpen] = useState(false);
-const openSidebar = () => {
-  setSidebarOpen(true);
-};
-const closeSideBar = () => {
-  setSidebarOpen(false);
-};
-
-  return (
-    <div className="container">
-      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
-      <Main />
-      <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} />
-    </div>
-  );
+    return (
+        <MyContext.Provider value={{ authenticated, setAuthenticated }}>
+            <div>
+                {authenticated ? (
+                    <Main />
+                ) : (
+                    <AuthPage />
+                )}
+            </div>
+        </MyContext.Provider>
+    );
 }
 
 export default App;

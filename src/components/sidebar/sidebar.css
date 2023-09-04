@@ -33,6 +33,8 @@
 }
 
 .sidebar__title > i {
+    margin-top: -55px;
+    margin-right: -5px;
     font-size: 18px;
     display: none;
 }
@@ -68,11 +70,11 @@
     font-weight: 700;
 }
 
-.sidebar__link a:focus {
+/* .sidebar__link a:focus {
     padding: 7px;
     background: rgba(62, 161, 117, 0.3);
     border-radius: 3px;
-}
+} */
 
 .sidebar__link > i {
     margin-right: 10px;

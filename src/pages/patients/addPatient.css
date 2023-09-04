@@ -1,0 +1,242 @@
+.add-patient-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /* background-color: #007bff; */
+    background-color: #3ea175;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    outline: none;
+}
+
+.add-patient-button:hover {
+    background-color: #0056b3;
+}
+
+/* .add-patient-form {
+    width: 300px;
+    z-index: 2;
+  } */
+
+/* Estilos para a div pai que centraliza verticalmente */
+.add-patient-container {
+    display: flex;
+    /* grid-template-columns: repeat(1, 1fr); */
+    justify-content: center;
+    align-items: center;
+    /* height: 60vh;  */
+}
+
+.add-patient-form {
+    /* position: absolute; */
+    width: auto;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-patient-form form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-patient-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    /* padding: 20px; */
+}
+
+.add-patient-form-header h2{
+    border: #0056b3;
+    border-bottom: #0056b3;
+}
+
+/* .add-patient-form .form-group {
+    margin-bottom: 10px;
+} */
+.add-patient-input-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    padding: 15px;
+    gap: 10px;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: start;
+    /* margin-bottom: 10px; */
+    /* justify-content: center; */
+}
+
+.inputBox label {
+    font-weight: bold;
+    /* margin-bottom: 5px; */
+}
+
+.inputBox input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.add-patient-form .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-patient-form .submit-button:hover {
+    background-color: #0056b3;
+}
+
+.close-button {
+    /* position: absolute; */
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 5px;
+    padding: 3px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #dd1c1c;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #cfcfcf;
+    color: #ff3838;
+    /* transform: rotate(90deg); */
+}
+
+
+
+
+
+.add-patient-appointment-input-group{
+    padding: 15px;
+
+}
+
+.appointment-info-container {
+    gap: 20px;
+}
+.appointment-info-container h2{
+    padding: 10px 0px;
+}
+
+
+.select-days {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* font-weight: bold; */
+
+    /* gap: 0px; */
+
+    /* grid-template-columns: repeat(3, 1fr); */
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
+}
+.select-days > label{
+    font-weight: bold;
+}
+
+.select-days-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-days-box {
+    margin: 5px;
+    display: flex;
+    gap: 5px;
+}
+
+.select-days-box button {
+    font-size: 15px;
+    background-color: #f0f0f0;
+    /* Cor padrão */
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.select-days-box button.selected {
+    background-color: #007bff;
+    /* Cor azul quando selecionado */
+    color: #fff;
+}
+
+
+
+
+.time-days {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.time-days > label{
+    font-weight: bold;
+}
+
+.time-days-group > label {
+    font-weight: bold;
+}
+
+.time-days-box {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 10px;
+}
+.time-days-box input {
+    /* width: 80px; */
+    height: 10px;
+}
+
+
+.inputTimeBox label {
+    /* font-weight: bold; */
+    /* margin-bottom: 5px; */
+}
+
+.inputTimeBox input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 575px) {
+    .add-patient-input-group{
+        display: flex;
+        flex-direction: column;
+    }
+}

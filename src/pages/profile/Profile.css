@@ -1,0 +1,146 @@
+.profile__container {
+    padding: 20px 35px;
+}
+
+.profile__title {
+    display: flex;
+    align-items: center;
+}
+
+.profile__title > img {
+    max-height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.profile__greeting > h1 {
+    font-size: 24px;
+    color: #2e4a66;
+    margin-bottom: 5px;
+}
+
+.profile__greeting > p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #a5aaad;
+}
+
+
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+} */
+
+.profile__card {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile__card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile__card h1 {
+    margin: 0;
+}
+
+.profile__card p {
+    margin: 10px 0;
+}
+
+.profile__card__edit__link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* border-radius: 5px; */
+    padding: 10px;
+    margin-top: 5px;
+    margin-right: 5px;
+    /* background-color: transparent; */
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+.profile__card__edit__link:hover {
+    color: darkblue;
+}
+/* 
+.form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    flex: 1;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.form-group input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 70%;
+}
+
+.edit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* @media only screen and (max-width: 855px) {
+    .main__cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 0px;
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .charts__right__cards {
+        grid-template-columns: 1fr;
+        align-items: center;
+        margin-top: 30px;
+    }
+} */
