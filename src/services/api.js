@@ -2,7 +2,7 @@
 
 
 // const apiUrl = 'http://localhost:8080';
-const apiUrl = 'https://ec2-107-22-21-93.compute-1.amazonaws.com:8080';
+const apiUrl = 'http://ec2-107-22-21-93.compute-1.amazonaws.com:8080';
 
 export const isAuthenticated = false;
 
