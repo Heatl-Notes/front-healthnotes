@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import AuthPage from './pages/authPage/AuthPage';
 import { isAuthenticated } from './utils/auth';
@@ -15,13 +16,15 @@ const App = () => {
 
     return (
         <MyContext.Provider value={{ authenticated, setAuthenticated }}>
-            <div>
-                {authenticated ? (
-                    <Main />
-                ) : (
-                    <AuthPage />
-                )}
-            </div>
+            <BrowserRouter>
+                <div>
+                    {authenticated ? (
+                        <Main />
+                    ) : (
+                        <AuthPage />
+                    )}
+                </div>
+            </BrowserRouter>
         </MyContext.Provider>
     );
 }

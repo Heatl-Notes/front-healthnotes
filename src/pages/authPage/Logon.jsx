@@ -28,7 +28,8 @@ const Logon = () => {
             console.log(isAuthenticated())
             setAuthenticated(isAuthenticated());
         } else {
-            throw new Error("Falha no login, tente novamente!!");
+            alert("Falha no login, tente novamente!!");
+            // throw new Error("Falha no login, tente novamente!!");
         }
     }
 

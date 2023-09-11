@@ -21,14 +21,14 @@ const Main = () => {
 
     return (
         <div className="container">
-            <BrowserRouter>
+            {/* <BrowserRouter> */}
 
                 <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} setActiveLink={setActiveLink} />
                 <Sidebar sidebarOpen={sidebarOpen} closeSideBar={closeSideBar} activeLink={activeLink} setActiveLink={setActiveLink} />
                 <main>
                     <Rotas />
                 </main>
-            </BrowserRouter>
+            {/* </BrowserRouter> */}
 
         </div>
     );
