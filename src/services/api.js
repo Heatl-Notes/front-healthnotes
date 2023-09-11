@@ -1,5 +1,9 @@
+// const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
+
+
 // const apiUrl = 'http://localhost:8080';
-const apiUrl = 'https://health-notes-47645d4f2894.herokuapp.com';
+const apiUrl = 'http://ec2-107-22-21-93.compute-1.amazonaws.com:8080';
+
 export const isAuthenticated = false;
 
 // FUNÇÕES DE AUTH
