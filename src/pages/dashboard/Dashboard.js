@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { useState, useEffect } from 'react';
-import { fetchCaregiverById, fetchNumberPatients, fetchRendaMensal, fetchAppointmentsForDay } from '../../services/api';
+import { useEffect, useState } from 'react';
+import { fetchAppointmentsForDay, fetchCaregiverById, fetchNumberPatients, fetchRendaMensal } from '../../services/api';
 
 import hello from '../../assets/hello.jpg';
 
-import './Dashboard.css';
 import { Link } from 'react-router-dom';
+import './Dashboard.css';
 
 const daysOfWeek = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
 
@@ -103,9 +103,9 @@ const Dashboard = () => {
                 </div> */}
             </div>
 
-            <div className="charts">
+            <div className="charts-dash">
 
-                <div className="charts__left">
+                {/* <div className="charts__left">
                     <div className="charts__left__title">
                         <div>
                             <h1>Lembretes</h1>
@@ -114,7 +114,7 @@ const Dashboard = () => {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
 
                 <div className="charts__right">
                     <div className="charts__right__title">
@@ -131,7 +131,7 @@ const Dashboard = () => {
                                 <p>{appointment.startTime} até às {appointment.endTime}</p>
                             </div>
                         ))}
- 
+
                     </div>
                 </div>
             </div>
